@@ -6,25 +6,88 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/24 17:55:05 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/27 15:37:37 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+sa (swap a): Swap the first 2 elements at the top of stack a.
+Do nothing if there is only one or no elements.
+sb (swap b): Swap the first 2 elements at the top of stack b.
+Do nothing if there is only one or no elements.
+ss : sa and sb at the same time.
+pa (push a): Take the first element at the top of b and put it at the top of a.
+Do nothing if b is empty.
+pb (push b): Take the first element at the top of a and put it at the top of b.
+Do nothing if a is empty.
+ra (rotate a): Shift up all elements of stack a by 1.
+The first element becomes the last one.
+rb (rotate b): Shift up all elements of stack b by 1.
+The first element becomes the last one.
+rr : ra and rb at the same time.
+rra (reverse rotate a): Shift down all elements of stack a by 1.
+The last element becomes the first one.
+rrb (reverse rotate b): Shift down all elements of stack b by 1.
+The last element becomes the first one.
+rrr : rra and rrb at the same time.
+*/
+
 #include"push_swap.h"
 
-node_t *create_node(int content)
+node_t	*create_node(int value)
 {
-	node_t *head;
+	node_t *new_node;
 
-	head = malloc(sizeof(node_t));
-	if (head == NULL)
+	new_node = malloc(sizeof(node_t));
+	if (new_node == NULL)
 		return (NULL);
-	head->data = content;
-	head->previous = NULL;
-	head->next = NULL;
+	new_node->data = value;
+	new_node->previous = NULL;
+	new_node->next = NULL;
+	return (new_node);
 }
 
-void insert_front(node_t **head, node_t *new_node, int content)
+void	insert_front(node_t **head, int value)
 {
-	new_node = create_node();
+	node_t *new_node;
+	
+	new_node = create_node(value);
+	if (new_node == NULL)
+		return ;
+	new_node->data = value;
+	new_node->next = *head;
+	(*head)->previous = new_node;
+	*head = new_node;
+}
+
+void	insert_end(node_t **head, int value)
+{
+	node_t *new_node;
+	node_t *tracker;
+
+	new_node = create_node(value);
+	if (new_node == NULL)
+		return ;
+	if (*head ==  NULL)
+	{
+		*head = new_node;
+		return ;
+	}
+	tracker = *head;
+	while (tracker->next != NULL)
+		tracker = tracker->next;
+	tracker->next = new_node;
+	new_node->previous = *head;
+}
+
+void	sa(node_t *head)
+{
+	int	temp;
+	
+	temp = 0;
+	if (head == NULL || head->next == NULL)
+		return ;
+	temp = head->data;
+	head->data = head->next->data;
+	head->next->data = temp;
 }
