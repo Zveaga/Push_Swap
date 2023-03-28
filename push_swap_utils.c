@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/27 15:37:37 by rares         ########   odam.nl         */
+/*   Updated: 2023/03/28 16:51:52 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,18 @@ node_t	*create_node(int value)
 	return (new_node);
 }
 
+// void	insert_front(node_t **head, int value)
+// {
+// 	node_t *new_node;
+	
+// 	new_node = create_node(value);
+// 	if (new_node == NULL)
+// 		return ;
+// 	new_node->data = value;
+// 	new_node->next = *head;
+// 	*head = new_node;
+// }
+
 void	insert_front(node_t **head, int value)
 {
 	node_t *new_node;
@@ -56,38 +68,47 @@ void	insert_front(node_t **head, int value)
 		return ;
 	new_node->data = value;
 	new_node->next = *head;
-	(*head)->previous = new_node;
+	if (*head != NULL)
+		(*head)->previous = new_node;
 	*head = new_node;
 }
 
-void	insert_end(node_t **head, int value)
+// void	insert_end(node_t **head, int value)
+// {
+// 	node_t *new_node;
+// 	node_t *tracker;
+
+// 	new_node = create_node(value);
+// 	if (new_node == NULL)
+// 		return ;
+// 	if (*head ==  NULL)
+// 	{
+// 		*head = new_node;
+// 		return ;
+// 	}
+// 	tracker = *head;
+// 	while (tracker->next != NULL)
+// 		tracker = tracker->next;
+// 	tracker->next = new_node;
+// 	new_node->next = NULL;
+// }
+
+void insert_end(node_t **tail, int value)
 {
-	node_t *new_node;
-	node_t *tracker;
+	node_t	*new_node;
 
 	new_node = create_node(value);
 	if (new_node == NULL)
 		return ;
-	if (*head ==  NULL)
+	if (*tail == NULL)
 	{
-		*head = new_node;
+		*tail = new_node;
 		return ;
 	}
-	tracker = *head;
-	while (tracker->next != NULL)
-		tracker = tracker->next;
-	tracker->next = new_node;
-	new_node->previous = *head;
-}
-
-void	sa(node_t *head)
-{
-	int	temp;
+	new_node->data = value;
+	new_node->previous = *tail;
+	new_node->next = NULL;
+	(*tail)->next = new_node;
+	*tail = new_node;
 	
-	temp = 0;
-	if (head == NULL || head->next == NULL)
-		return ;
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
 }

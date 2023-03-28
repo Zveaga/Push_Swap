@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/27 15:39:25 by rares         ########   odam.nl         */
+/*   Updated: 2023/03/28 17:15:47 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,65 @@ rrr : rra and rrb at the same time.
 
 #include"push_swap.h"
 
+
+
+node_t *get_to_tail(node_t *head)
+{
+	node_t	*tracker;
+	
+	if (head == NULL)
+		return (NULL);
+	tracker = head;
+	while (tracker->next != NULL)
+		tracker = tracker->next;
+	return (tracker);
+}
+void	init(node_t **head, node_t **tail, int value)
+{
+	node_t	*new_node;
+	
+	new_node = create_node(value);
+	if (new_node == NULL)
+		return ;
+	new_node->data = value;
+	new_node->previous = NULL;
+	new_node->next = NULL;
+	*head = new_node;
+	*tail = new_node;
+}
+
 int	main (int argc, char **argv)
 {
 	int	i;
 	stacks_t stacks;
 
-	i = 0;
-	stacks.stack_a = NULL;
-	stacks.stack_b = NULL;
+	i = 1;
+	stacks.a_head = NULL;
+	stacks.a_tail = NULL;
+	stacks.b_head = NULL;
+	stacks.b_tail = NULL;
 
 	if (argc < 2)
 	{
 		printf("Invalid argument count!");
 		exit(EXIT_FAILURE);
 	}
+	init(&stacks.a_head, &stacks.a_tail, atoi(argv[1]));
+	printf("Top element: %d\n", stacks.a_head->data);
 	while (i++ < argc - 1)
-	{
-		insert_end(&stacks.stack_a, atoi(argv[i]));
-		
-		//printf ("Number: %d\n", atoi(argv[i]));
-	}
-	sa(stacks.stack_a);
+		insert_end(&stacks.a_tail, atoi(argv[i]));
+	stacks.a_tail = get_to_tail(stacks.a_head); 
+
+	printf("Stack_a head: %d\n", stacks.a_head->data);
+	printf("Stack_a tail: %d\n", stacks.a_tail->data);
+
+	// ---swap---
+	swap(&stacks.a_head);
+
+	//-print numbers in stack a-
 	node_t *tracker;
-	tracker = stacks.stack_a ;
+	tracker = stacks.a_head ;
+	printf("Head: %d\n", tracker->data);
 	while (tracker != NULL)
 	{
 		printf("%d ", tracker->data);
