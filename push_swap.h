@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/24 16:44:17 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/27 15:36:31 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,21 @@ typedef struct node
 	struct node *previous;
 } node_t;
 
+// node_t *stack_a;
+// node_t *stack_b;
+
 typedef struct stacks
 {
 	node_t *stack_a;
 	node_t *stack_b;
 } stacks_t;
+
+node_t *create_node(int value);
+
+void insert_front(node_t **head, int value);
+
+void	insert_end(node_t **head, int value);
+
+void	sa(node_t *head);
 
 #endif
