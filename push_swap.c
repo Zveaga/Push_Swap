@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/28 17:15:47 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/29 17:21:41 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,32 @@ rrr : rra and rrb at the same time.
 
 #include"push_swap.h"
 
+void	print_reversed(node_t *tail)
+{
+	node_t	*tracker;
 
+	printf("Reversed print: ");
+	tracker = tail;
+	while (tracker != NULL)
+	{
+		printf("%d", tracker->data);
+		tracker = tracker->previous;
+	}
+	printf("\n");
+}
+void	print_normal(node_t *head)
+{
+	node_t	*tracker;
+
+	printf("Normal print:   ");
+	tracker = head;
+	while (tracker != NULL)
+	{
+		printf("%d", tracker->data);
+		tracker = tracker->next;
+	}
+	printf("\n");
+}
 
 node_t *get_to_tail(node_t *head)
 {
@@ -78,26 +103,25 @@ int	main (int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	init(&stacks.a_head, &stacks.a_tail, atoi(argv[1]));
-	printf("Top element: %d\n", stacks.a_head->data);
 	while (i++ < argc - 1)
 		insert_end(&stacks.a_tail, atoi(argv[i]));
-	stacks.a_tail = get_to_tail(stacks.a_head); 
+		
+	stacks.a_tail = get_to_tail(stacks.a_head);
+	stacks.b_tail = get_to_tail(stacks.b_head);
 
 	printf("Stack_a head: %d\n", stacks.a_head->data);
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
 
 	// ---swap---
-	swap(&stacks.a_head);
+	//sa(&stacks.a_head);
+	pa(&stacks.a_head, &stacks.b_head);
+	pb(&stacks.a_head, &stacks.b_head);
 
-	//-print numbers in stack a-
-	node_t *tracker;
-	tracker = stacks.a_head ;
-	printf("Head: %d\n", tracker->data);
-	while (tracker != NULL)
-	{
-		printf("%d ", tracker->data);
-		tracker = tracker->next;
-	}
+
+	//-print- REMOVE BEFORE SUBMISSION!!!
+	print_normal(stacks.a_head);
+	print_normal(stacks.b_head);
+	//print_reversed(stacks.a_tail);
 	return (0);
 }
 

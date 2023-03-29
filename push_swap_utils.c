@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/28 16:51:52 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/29 17:14:00 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,6 @@ node_t	*create_node(int value)
 	return (new_node);
 }
 
-// void	insert_front(node_t **head, int value)
-// {
-// 	node_t *new_node;
-	
-// 	new_node = create_node(value);
-// 	if (new_node == NULL)
-// 		return ;
-// 	new_node->data = value;
-// 	new_node->next = *head;
-// 	*head = new_node;
-// }
-
 void	insert_front(node_t **head, int value)
 {
 	node_t *new_node;
@@ -72,26 +60,6 @@ void	insert_front(node_t **head, int value)
 		(*head)->previous = new_node;
 	*head = new_node;
 }
-
-// void	insert_end(node_t **head, int value)
-// {
-// 	node_t *new_node;
-// 	node_t *tracker;
-
-// 	new_node = create_node(value);
-// 	if (new_node == NULL)
-// 		return ;
-// 	if (*head ==  NULL)
-// 	{
-// 		*head = new_node;
-// 		return ;
-// 	}
-// 	tracker = *head;
-// 	while (tracker->next != NULL)
-// 		tracker = tracker->next;
-// 	tracker->next = new_node;
-// 	new_node->next = NULL;
-// }
 
 void insert_end(node_t **tail, int value)
 {
@@ -112,3 +80,35 @@ void insert_end(node_t **tail, int value)
 	*tail = new_node;
 	
 }
+
+// void	insert_front(node_t **head, int value)
+// {
+// 	node_t *new_node;
+	
+// 	new_node = create_node(value);
+// 	if (new_node == NULL)
+// 		return ;
+// 	new_node->data = value;
+// 	new_node->next = *head;
+// 	*head = new_node;
+// }
+
+// void	insert_end(node_t **head, int value)
+// {
+// 	node_t *new_node;
+// 	node_t *tracker;
+
+// 	new_node = create_node(value);
+// 	if (new_node == NULL)
+// 		return ;
+// 	if (*head ==  NULL)
+// 	{
+// 		*head = new_node;
+// 		return ;
+// 	}
+// 	tracker = *head;
+// 	while (tracker->next != NULL)
+// 		tracker = tracker->next;
+// 	tracker->next = new_node;
+// 	new_node->next = NULL;
+// }
