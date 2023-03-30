@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/29 16:22:17 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/30 10:51:44 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ node_t			*create_node(int value);
 
 void			insert_front(node_t **head, int value);
 
-void			insert_end(node_t **tail, int value);
+void 			insert_end(node_t **head, node_t **tail, int value);
 
 void			swap(node_t **head);
 
