@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/29 17:10:10 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/30 10:59:18 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,12 @@ void	ss(node_t **head_a, node_t **head_b)
 void	pa(node_t **head_a, node_t **head_b)
 {
 	node_t	*elem1_a;
-	node_t	*elem2_a;
 	node_t	*elem1_b;
 	node_t	*elem2_b;
 	
 	if (*head_b == NULL)
 		return ;
 	elem1_a = *head_a;
-	elem2_a = (*head_a)->next;
 	elem1_b = *head_b;
 	elem2_b = (*head_b)->next;
 
@@ -112,14 +110,14 @@ void	pb(node_t **head_a, node_t **head_b)
 	node_t	*elem1_a;
 	node_t	*elem2_a;
 	node_t	*elem1_b;
-	node_t	*elem2_b;
 	
 	if (*head_a == NULL)
 		return ;
+	if (*head_b == NULL)
+		*head_b = malloc(sizeof(node_t));
 	elem1_a = *head_a;
 	elem2_a = (*head_a)->next;
 	elem1_b = *head_b;
-	elem2_b = (*head_b)->next;
 
 	elem1_a->next = elem1_b;
 	elem1_a->previous = NULL;

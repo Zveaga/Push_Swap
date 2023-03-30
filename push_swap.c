@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/29 17:21:41 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/30 11:01:50 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ rrr : rra and rrb at the same time.
 
 #include"push_swap.h"
 
+void	init(node_t **head, node_t **tail, int value)
+{
+	node_t	*new_node;
+	
+	new_node = create_node(value);
+	if (new_node == NULL)
+		return ;
+	new_node->data = value;
+	new_node->previous = NULL;
+	new_node->next = NULL;
+	*head = new_node;
+	*tail = new_node;
+}
 void	print_reversed(node_t *tail)
 {
 	node_t	*tracker;
@@ -72,26 +85,13 @@ node_t *get_to_tail(node_t *head)
 		tracker = tracker->next;
 	return (tracker);
 }
-void	init(node_t **head, node_t **tail, int value)
-{
-	node_t	*new_node;
-	
-	new_node = create_node(value);
-	if (new_node == NULL)
-		return ;
-	new_node->data = value;
-	new_node->previous = NULL;
-	new_node->next = NULL;
-	*head = new_node;
-	*tail = new_node;
-}
 
 int	main (int argc, char **argv)
 {
 	int	i;
 	stacks_t stacks;
 
-	i = 1;
+	i = 0;
 	stacks.a_head = NULL;
 	stacks.a_tail = NULL;
 	stacks.b_head = NULL;
@@ -102,9 +102,9 @@ int	main (int argc, char **argv)
 		printf("Invalid argument count!");
 		exit(EXIT_FAILURE);
 	}
-	init(&stacks.a_head, &stacks.a_tail, atoi(argv[1]));
+
 	while (i++ < argc - 1)
-		insert_end(&stacks.a_tail, atoi(argv[i]));
+		insert_end(&stacks.a_head ,&stacks.a_tail, atoi(argv[i]));
 		
 	stacks.a_tail = get_to_tail(stacks.a_head);
 	stacks.b_tail = get_to_tail(stacks.b_head);
@@ -114,14 +114,18 @@ int	main (int argc, char **argv)
 
 	// ---swap---
 	//sa(&stacks.a_head);
-	pa(&stacks.a_head, &stacks.b_head);
+	//pa(&stacks.a_head, &stacks.b_head);
 	pb(&stacks.a_head, &stacks.b_head);
 
 
 	//-print- REMOVE BEFORE SUBMISSION!!!
+	printf("Normal print, stack_a:   ");
 	print_normal(stacks.a_head);
+	printf("Normal print:   ");
 	print_normal(stacks.b_head);
-	//print_reversed(stacks.a_tail);
+
+	printf("Reversed print: ");
+	print_reversed(stacks.a_tail);
 	return (0);
 }
 
