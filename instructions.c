@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/30 10:59:18 by rares         ########   odam.nl         */
+/*   Updated: 2023/03/30 18:05:15 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ Do nothing if there is only one or no elements.
 ss : sa and sb at the same time.	---DONE---
 
 pa (push a): Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
+Do nothing if b is empty.		---DONE---
 
 pb (push b): Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
+Do nothing if a is empty.		---DONE---
 
 ra (rotate a): Shift up all elements of stack a by 1.
 The first element becomes the last one.
@@ -82,30 +82,20 @@ void	ss(node_t **head_a, node_t **head_b)
 	swap(head_b);
 }
 
-void	pa(node_t **head_a, node_t **head_b)
+void	b_head_is_null(node_t **head_a, node_t **head_b, node_t **tail_b, node_t **elem1_b, node_t **elem2_a, node_t **elem1_a)
 {
-	node_t	*elem1_a;
-	node_t	*elem1_b;
-	node_t	*elem2_b;
-	
-	if (*head_b == NULL)
-		return ;
-	elem1_a = *head_a;
-	elem1_b = *head_b;
-	elem2_b = (*head_b)->next;
-
-	elem1_b->next = elem1_a;
-	elem1_b->previous = NULL;
-	
-	elem1_a->previous = elem1_b;
-	
-	elem2_b->previous = NULL;
-
-	*head_a = elem1_b;
-	*head_b = elem2_b;
+		*elem1_b = *elem1_a;
+		(*elem2_a)->previous = NULL;
+		
+		(*elem1_b)->next = NULL;
+		(*elem1_b)->previous = NULL;
+		
+		*head_a = *elem2_a;
+		*head_b = *elem1_b;
+		*tail_b = *elem1_b;
 }
 
-void	pb(node_t **head_a, node_t **head_b)
+void	push(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
 {
 	node_t	*elem1_a;
 	node_t	*elem2_a;
@@ -113,19 +103,61 @@ void	pb(node_t **head_a, node_t **head_b)
 	
 	if (*head_a == NULL)
 		return ;
-	if (*head_b == NULL)
-		*head_b = malloc(sizeof(node_t));
 	elem1_a = *head_a;
-	elem2_a = (*head_a)->next;
 	elem1_b = *head_b;
-
+	if ((*head_a)->next == NULL)
+		elem2_a = NULL;
+	else
+		elem2_a = (*head_a)->next;
+	if (elem1_b == NULL)
+	{
+		b_head_is_null(head_a, head_b, tail_b, &elem1_b, &elem2_a, &elem1_a);
+		return;
+	}
 	elem1_a->next = elem1_b;
-	elem1_a->previous = NULL;
-	
 	elem1_b->previous = elem1_a;
-
-	elem2_a->previous = NULL;
-
+	if (elem2_a != NULL)
+		elem2_a->previous = NULL;
+	else if (elem2_a == NULL)
+		*tail_a = NULL;
 	*head_a = elem2_a;
 	*head_b = elem1_a;
+}
+
+void	pb(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	push(head_a, head_b, tail_a, tail_b);
+}
+
+void	pa(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a)
+{
+	push(head_b, head_a, tail_b, tail_a);
+}
+
+void	rotate(node_t **head, node_t **tail) ///to do: for only 3 elements
+{
+	node_t	*first;
+	node_t	*second;
+	node_t	*bf_last;
+	node_t	*last;
+
+	if (*head == NULL)
+		return ;
+	first = (*head);
+	second = (*head)->next;
+	bf_last = (*tail)->previous;
+	last = (*tail);
+	
+	first->next = NULL;
+	first->previous = bf_last;
+	
+	last->next = second;
+	last->previous = NULL;
+	
+	second->previous = last;
+	bf_last->next = first;
+
+	(*head) = last;
+	(*tail) = first;
+	
 }

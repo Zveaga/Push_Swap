@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/30 11:01:50 by rares         ########   odam.nl         */
+/*   Updated: 2023/03/30 18:04:52 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	print_reversed(node_t *tail)
 {
 	node_t	*tracker;
 
-	printf("Reversed print: ");
+	//printf("Reversed print: ");
 	tracker = tail;
 	while (tracker != NULL)
 	{
@@ -64,7 +64,7 @@ void	print_normal(node_t *head)
 {
 	node_t	*tracker;
 
-	printf("Normal print:   ");
+	//printf("Normal print:   ");
 	tracker = head;
 	while (tracker != NULL)
 	{
@@ -112,20 +112,53 @@ int	main (int argc, char **argv)
 	printf("Stack_a head: %d\n", stacks.a_head->data);
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
 
-	// ---swap---
+	//---INSTRUCTIONS---   REMOVE BEFORE SUBMISSION!!!!!
 	//sa(&stacks.a_head);
 	//pa(&stacks.a_head, &stacks.b_head);
-	pb(&stacks.a_head, &stacks.b_head);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	//pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	//pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 
 
-	//-print- REMOVE BEFORE SUBMISSION!!!
-	printf("Normal print, stack_a:   ");
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+
+	rotate(&stacks.a_head, &stacks.a_tail);
+	rotate(&stacks.a_head, &stacks.a_tail);
+	rotate(&stacks.a_head, &stacks.a_tail);
+	rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+
+
+	
+	//---PRINT--- REMOVE BEFORE SUBMISSION!!!
+	printf("Normal print,   stack_a:  ");
 	print_normal(stacks.a_head);
-	printf("Normal print:   ");
+
+	printf("Reversed print, stack_a:  ");
+	print_reversed(stacks.a_tail);
+	printf("\n");
+	printf("Normal print,   stack_b:  ");
 	print_normal(stacks.b_head);
 
-	printf("Reversed print: ");
-	print_reversed(stacks.a_tail);
+	printf("Reversed print, stack_b:  ");
+	print_reversed(stacks.b_tail);
 	return (0);
 }
 
