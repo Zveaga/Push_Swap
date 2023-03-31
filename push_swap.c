@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/30 18:04:52 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/31 15:14:08 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,14 @@ int	main (int argc, char **argv)
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
 
 	//---INSTRUCTIONS---   REMOVE BEFORE SUBMISSION!!!!!
-	//sa(&stacks.a_head);
-	//pa(&stacks.a_head, &stacks.b_head);
+	// sa(&stacks.a_head);
+	// pa(&stacks.a_head, &stacks.b_head);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	//pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	//pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// pb(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
@@ -138,10 +138,21 @@ int	main (int argc, char **argv)
 	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
 	// pa(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
 
-	rotate(&stacks.a_head, &stacks.a_tail);
-	rotate(&stacks.a_head, &stacks.a_tail);
-	rotate(&stacks.a_head, &stacks.a_tail);
-	rotate(&stacks.a_head, &stacks.a_tail);
+	//reverse_rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+	//reverse_rotate(&stacks.a_head, &stacks.a_tail);
+	//rr(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+
+	rrr(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	rr(&stacks.b_head, &stacks.a_head, &stacks.a_tail, &stacks.b_tail);
+
+	
+	//rotate(&stacks.a_head);
+	//rotate(&stacks.a_head);
+	//rotate(&stacks.a_head);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
 	//rotate(&stacks.a_head, &stacks.a_tail);
 	//rotate(&stacks.a_head, &stacks.a_tail);
 

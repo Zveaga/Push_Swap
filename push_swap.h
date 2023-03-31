@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/30 17:42:08 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/31 15:00:54 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,20 @@ void			pb(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b);
 void			pa(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a);
 
 void			rotate(node_t **head, node_t **tail);
+
+void			ra(node_t **head_a, node_t **tail_a);
+
+void			rb(node_t **head_b, node_t **tail_b);
+
+void			rr(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
+
+void			reverse_rotate(node_t **head, node_t **tail);
+
+void			rra(node_t **head_a, node_t **tail_a);
+
+void			rrb(node_t **head_b, node_t **tail_b);
+
+void			rrr(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/30 18:05:15 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/31 15:15:00 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ pb (push b): Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.		---DONE---
 
 ra (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
+The first element becomes the last one.			---DONE---
 
 rb (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-rr : ra and rb at the same time.
+The first element becomes the last one.			---DONE---
 
-rra (reverse rotate a): Shift down all elements of stack a by 1.
+rr : ra and rb at the same time.		---DONE---
+
+rra (reverse rotate a): Shift down all elements of stack a by 1.		---DONE---
 The last element becomes the first one.
 
-rrb (reverse rotate b): Shift down all elements of stack b by 1.
+rrb (reverse rotate b): Shift down all elements of stack b by 1.		---DONE---
 The last element becomes the first one.
 
-rrr : rra and rrb at the same time.
+rrr : rra and rrb at the same time.			---DONE---
 */
 
 #include"push_swap.h"
@@ -134,14 +135,14 @@ void	pa(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a)
 	push(head_b, head_a, tail_b, tail_a);
 }
 
-void	rotate(node_t **head, node_t **tail) ///to do: for only 3 elements
+void	rotate(node_t **head, node_t **tail) ///to do: for only 2 elements
 {
 	node_t	*first;
 	node_t	*second;
 	node_t	*bf_last;
 	node_t	*last;
 
-	if (*head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	first = (*head);
 	second = (*head)->next;
@@ -149,15 +150,71 @@ void	rotate(node_t **head, node_t **tail) ///to do: for only 3 elements
 	last = (*tail);
 	
 	first->next = NULL;
-	first->previous = bf_last;
+	first->previous = last;
 	
-	last->next = second;
+	second->previous = NULL;
+	
+	last->next = first;
+
+	(*head) = second;
+	(*tail) = first;
+		 
+}
+
+
+void	ra(node_t **head_a, node_t **tail_a)
+{
+	rotate(head_a, tail_a);
+}
+
+void	rb(node_t **head_b, node_t **tail_b)
+{
+	rotate(head_b, tail_b);
+}
+
+void	rr(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	ra(head_a, tail_b);
+	rb(head_b, tail_a);
+}
+
+void	reverse_rotate(node_t **head, node_t **tail)
+{
+	node_t	*first;
+	node_t	*second;
+	node_t	*bf_last;
+	node_t	*last;
+	
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	first = (*head);
+	second = (*head)->next;
+	bf_last = (*tail)->previous;
+	last = (*tail);
+
+	last->next = first;
 	last->previous = NULL;
 	
-	second->previous = last;
-	bf_last->next = first;
+	bf_last->next = NULL;
 
-	(*head) = last;
-	(*tail) = first;
+	first->previous = last;
 	
+	*head = last;
+	*tail = bf_last;
+}
+
+void	rra(node_t **head_a, node_t **tail_a)
+{
+	reverse_rotate(head_a, tail_a);
+}
+
+void	rrb(node_t **head_b, node_t **tail_b)
+{
+	reverse_rotate(head_b, tail_b);
+}
+
+void	rrr(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	rra(head_a, tail_a);
+	rrb(head_b, tail_b);
 }
