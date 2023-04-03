@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/31 15:00:54 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/03 14:52:43 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,19 @@ void 			insert_end(node_t **head, node_t **tail, int value);
 
 void			swap(node_t **head);
 
-void			sa(node_t **head_a);
-
-void			ss(node_t **head_a, node_t **head_b);
+void			swap_both(node_t **head_a, node_t **head_b);
 
 void			push(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b);
 
-void			pb(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b);
-
-void			pa(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a);
-
 void			rotate(node_t **head, node_t **tail);
 
-void			ra(node_t **head_a, node_t **tail_a);
-
-void			rb(node_t **head_b, node_t **tail_b);
-
-void			rr(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
+void			rotate_both(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
 
 void			reverse_rotate(node_t **head, node_t **tail);
 
-void			rra(node_t **head_a, node_t **tail_a);
+void			reverse_rotate_both(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
 
-void			rrb(node_t **head_b, node_t **tail_b);
-
-void			rrr(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
+void			swap_two(node_t **head, node_t **tail);
 
 
 #endif

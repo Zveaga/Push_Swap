@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/31 15:15:00 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/03 15:04:02 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	swap(node_t **head)
 	node_t	*elem_2;
 	node_t	*elem_3;
 
-	if (*head == NULL | (*head)->next == NULL | (*head)->next->next == NULL)
+	if (*head == NULL || (*head)->next == NULL || (*head)->next->next == NULL)
 		return ;
 	elem_1 = *head;
 	elem_2 = (*head)->next;
@@ -67,17 +67,7 @@ void	swap(node_t **head)
 	(*head) = elem_2;
 }
 
-void	sa(node_t **head_a)
-{
-	swap(head_a);
-}
-
-void	sb(node_t **head_b)
-{
-	swap(head_b);
-}
-
-void	ss(node_t **head_a, node_t **head_b)
+void	swap_both(node_t **head_a, node_t **head_b)
 {
 	swap(head_a);
 	swap(head_b);
@@ -125,14 +115,19 @@ void	push(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
 	*head_b = elem1_a;
 }
 
-void	pb(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+void	swap_two(node_t **head, node_t **tail)
 {
-	push(head_a, head_b, tail_a, tail_b);
-}
+	node_t	*first;
+	node_t	*last;
 
-void	pa(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a)
-{
-	push(head_b, head_a, tail_b, tail_a);
+	first = *head;
+	last = *tail;
+	(*head)->next = NULL;
+	(*head)->previous = (*tail);
+	(*tail)->next = (*head);
+	(*tail)->previous = NULL;
+	*head = last;
+	*tail = first;
 }
 
 void	rotate(node_t **head, node_t **tail) ///to do: for only 2 elements
@@ -161,21 +156,10 @@ void	rotate(node_t **head, node_t **tail) ///to do: for only 2 elements
 		 
 }
 
-
-void	ra(node_t **head_a, node_t **tail_a)
+void	rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
 {
-	rotate(head_a, tail_a);
-}
-
-void	rb(node_t **head_b, node_t **tail_b)
-{
-	rotate(head_b, tail_b);
-}
-
-void	rr(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
-{
-	ra(head_a, tail_b);
-	rb(head_b, tail_a);
+	rotate(head_a, tail_b);
+	rotate(head_b, tail_a);
 }
 
 void	reverse_rotate(node_t **head, node_t **tail)
@@ -203,18 +187,8 @@ void	reverse_rotate(node_t **head, node_t **tail)
 	*tail = bf_last;
 }
 
-void	rra(node_t **head_a, node_t **tail_a)
+void	reverse_rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
 {
 	reverse_rotate(head_a, tail_a);
-}
-
-void	rrb(node_t **head_b, node_t **tail_b)
-{
 	reverse_rotate(head_b, tail_b);
-}
-
-void	rrr(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
-{
-	rra(head_a, tail_a);
-	rrb(head_b, tail_b);
 }
