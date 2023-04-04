@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/03 14:52:43 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/04 15:11:24 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct node
 {
 	int				data;
+	int				index;
 	struct node 	*next;
 	struct node 	*previous;
 } node_t;
