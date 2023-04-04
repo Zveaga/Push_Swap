@@ -13,13 +13,13 @@ CC = cc
 
 all: $(NAME)
 
-$(NAME): libft/libft.a
+all: $(NAME)
+
+$(NAME): libft/libft.a $(OBJ)
+	ar rcs $(NAME) $(OBJ) libft/*.o
 
 libft/libft.a:
 	make -C libft
-
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $^

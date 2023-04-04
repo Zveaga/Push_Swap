@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 14:54:55 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/04 20:12:02 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,12 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 	}
 	while (argv[i])
 	{
-		if (ft_atoi(argv[i]) == 0)
+		if (check_digit(argv[i]) == 0)
+		{
+			write(2, "Error\n", 6);
+			exit(EXIT_FAILURE);
+		}
+		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE);
@@ -122,10 +127,17 @@ int	main (int argc, char **argv)
 	stacks.b_head = NULL;
 	stacks.b_tail = NULL;
 
+	//f ()
+
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
+	// if (is_sorted(stacks.a_head) == 0)
+	// {
+	// 	write(1, "OK\n", 3);
+	// 	exit(EXIT_SUCCESS);
+	// }
 		
-	stacks.a_tail = get_to_tail(stacks.a_head);
-	stacks.b_tail = get_to_tail(stacks.b_head);
+	// stacks.a_tail = get_to_tail(stacks.a_head);
+	// stacks.b_tail = get_to_tail(stacks.b_head);
 
 	printf("Stack_a head: %d\n", stacks.a_head->data);
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
@@ -149,7 +161,7 @@ int	main (int argc, char **argv)
 	
 	//rotate(&stacks.b_head, &stacks.b_tail);
 
-	reverse_rotate(&stacks.a_head, &stacks.a_tail);
+	//reverse_rotate(&stacks.a_head, &stacks.a_tail);
 	//reverse_rotate(&stacks.b_head, &stacks.b_tail);
 
 	//swap_two(&stacks.b_head, &stacks.b_tail);

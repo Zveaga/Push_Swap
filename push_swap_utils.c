@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 15:25:53 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/04 20:11:50 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,34 +82,33 @@ void insert_end(node_t **head, node_t **tail, int value)
 	
 }
 
-// void	insert_front(node_t **head, int value)
-// {
-// 	node_t *new_node;
-	
-// 	new_node = create_node(value);
-// 	if (new_node == NULL)
-// 		return ;
-// 	new_node->data = value;
-// 	new_node->next = *head;
-// 	*head = new_node;
-// }
+int	is_sorted(node_t *head)
+{
+	node_t	*tracker;
 
-// void	insert_end(node_t **head, int value)
-// {
-// 	node_t *new_node;
-// 	node_t *tracker;
+	tracker = head;
+	while(tracker != NULL && tracker->next != NULL)
+	{
+		if(tracker->data > tracker->next->data)
+			return (1);
+		
+		tracker = tracker->next;
+	}
+	return (0);
+}
 
-// 	new_node = create_node(value);
-// 	if (new_node == NULL)
-// 		return ;
-// 	if (*head ==  NULL)
-// 	{
-// 		*head = new_node;
-// 		return ;
-// 	}
-// 	tracker = *head;
-// 	while (tracker->next != NULL)
-// 		tracker = tracker->next;
-// 	tracker->next = new_node;
-// 	new_node->next = NULL;
-// }
+int	check_digit(char *num)
+{
+	int	i;
+
+	i = 0;
+	if (num[0] == '-')
+		i++;
+	while (num[i])
+	{
+		if (ft_isdigit(num[i]) == 1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
