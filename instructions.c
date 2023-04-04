@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/03 15:04:02 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/04 13:56:29 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,24 +134,22 @@ void	rotate(node_t **head, node_t **tail) ///to do: for only 2 elements
 {
 	node_t	*first;
 	node_t	*second;
-	node_t	*bf_last;
 	node_t	*last;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	first = (*head);
-	second = (*head)->next;
-	bf_last = (*tail)->previous;
 	last = (*tail);
+	second = (*head)->next;
 	
 	first->next = NULL;
 	first->previous = last;
 	
-	second->previous = NULL;
-	
 	last->next = first;
 
+	second->previous = NULL;
 	(*head) = second;
+	
 	(*tail) = first;
 		 
 }
@@ -165,14 +163,12 @@ void	rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tai
 void	reverse_rotate(node_t **head, node_t **tail)
 {
 	node_t	*first;
-	node_t	*second;
 	node_t	*bf_last;
 	node_t	*last;
 	
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	first = (*head);
-	second = (*head)->next;
 	bf_last = (*tail)->previous;
 	last = (*tail);
 

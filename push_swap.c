@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/03 17:36:08 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/04 13:56:47 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,10 +295,8 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 
 int	main (int argc, char **argv)
 {
-	int	i;
 	stacks_t stacks;
 
-	i = 0;
 	stacks.a_head = NULL;
 	stacks.a_tail = NULL;
 	stacks.b_head = NULL;
@@ -306,8 +304,8 @@ int	main (int argc, char **argv)
 
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
 		
-	//stacks.a_tail = get_to_tail(stacks.a_head);
-	//stacks.b_tail = get_to_tail(stacks.b_head);
+	stacks.a_tail = get_to_tail(stacks.a_head);
+	stacks.b_tail = get_to_tail(stacks.b_head);
 
 	printf("Stack_a head: %d\n", stacks.a_head->data);
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
@@ -326,9 +324,12 @@ int	main (int argc, char **argv)
 	//push(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 
 	//rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+	//rotate(&stacks.a_head, &stacks.a_tail);
+	
 	//rotate(&stacks.b_head, &stacks.b_tail);
 
-	//reverse_rotate(&stacks.a_head, &stacks.a_tail);
+	reverse_rotate(&stacks.a_head, &stacks.a_tail);
 	//reverse_rotate(&stacks.b_head, &stacks.b_tail);
 
 	//swap_two(&stacks.b_head, &stacks.b_tail);
