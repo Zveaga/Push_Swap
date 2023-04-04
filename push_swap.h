@@ -6,16 +6,18 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 15:11:24 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/04 20:11:46 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include "libft/libft.h"
 # include<unistd.h>
 # include<stdlib.h>
 # include<stdio.h>
+# include<limits.h>
 
 typedef struct node
 {
@@ -54,6 +56,12 @@ void			reverse_rotate(node_t **head, node_t **tail);
 void			reverse_rotate_both(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
 
 void			swap_two(node_t **head, node_t **tail);
+
+int				is_sorted(node_t *head);
+
+int				check_digit(char *num);
+
+
 
 
 #endif
