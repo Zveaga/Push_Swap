@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 20:11:46 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/05 16:03:01 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include<unistd.h>
 # include<stdlib.h>
 # include<stdio.h>
-# include<limits.h>
 
 typedef struct node
 {
@@ -60,6 +59,8 @@ void			swap_two(node_t **head, node_t **tail);
 int				is_sorted(node_t *head);
 
 int				check_digit(char *num);
+
+int				check_duplicate(char **argv, long number, int i);
 
 
 

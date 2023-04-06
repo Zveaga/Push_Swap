@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/11 18:24:40 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/18 13:42:42 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/05 15:07:20 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include<stdlib.h>
 # include<unistd.h>
+# include<limits.h>
 
-int		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 
 void	ft_bzero(void *s, size_t n);
 
