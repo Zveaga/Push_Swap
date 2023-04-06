@@ -4,6 +4,7 @@ SRC = \
 instructions.c \
 push_swap_utils.c \
 push_swap.c \
+normalize.c \
 
 OBJ = $(SRC:.c=.o)
 

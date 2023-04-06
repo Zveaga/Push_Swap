@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/05 16:03:01 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/06 18:24:39 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				check_digit(char *num);
 
 int				check_duplicate(char **argv, long number, int i);
 
-
+void			ft_bubble_sort(node_t **head);
 
 
 #endif

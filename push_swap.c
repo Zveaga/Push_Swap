@@ -6,31 +6,9 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/05 16:12:11 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/06 19:05:13 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-sa (swap a): Swap the first 2 elements at the top of stack a.
-Do nothing if there is only one or no elements.
-sb (swap b): Swap the first 2 elements at the top of stack b.
-Do nothing if there is only one or no elements.
-ss : sa and sb at the same time.
-pa (push a): Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
-pb (push b): Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
-ra (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
-rb (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-rr : ra and rb at the same time.
-rra (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.
-rrb (reverse rotate b): Shift down all elements of stack b by 1.
-The last element becomes the first one.
-rrr : rra and rrb at the same time.
-*/
 
 #include"push_swap.h"
 
@@ -135,14 +113,13 @@ int	main (int argc, char **argv)
 	stacks.b_head = NULL;
 	stacks.b_tail = NULL;
 
-	//f
-
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
-	if (is_sorted(stacks.a_head) == 0)
-	{
-		write(1, "OK\n", 3);
-		exit(EXIT_SUCCESS);
-	}
+	ft_bubble_sort(&stacks.a_head);
+	// if (is_sorted(stacks.a_head) == 0)
+	// {
+	// 	write(1, "OK\n", 3);
+	// 	exit(EXIT_SUCCESS);
+	// }
 		
 	// stacks.a_tail = get_to_tail(stacks.a_head);
 	// stacks.b_tail = get_to_tail(stacks.b_head);
