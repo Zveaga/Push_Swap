@@ -13,8 +13,6 @@ CC = cc
 
 all: $(NAME)
 
-all: $(NAME)
-
 $(NAME): libft/libft.a $(OBJ)
 	ar rcs $(NAME) $(OBJ) libft/*.o
 
@@ -34,4 +32,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus libft clean fclean re
-

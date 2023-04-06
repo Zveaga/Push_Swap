@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 20:12:02 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/05 16:12:11 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,24 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 	}
 	while (argv[i])
 	{
+		long	temp;
+
+		temp = ft_atoi(argv[i]);
 		if (check_digit(argv[i]) == 0)
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE);
 		}
-		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
+		if (temp < INT_MIN || temp > INT_MAX)
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE);
 		}
+		// if (check_duplicate(argv, temp, i) == 0)
+		// {
+		// 	write(2, "Error\n", 6);
+		// 	exit(EXIT_FAILURE);
+		// }
 		insert_end(head_a ,tail_a, ft_atoi(argv[i]));
 		i++;
 	}
@@ -127,14 +135,14 @@ int	main (int argc, char **argv)
 	stacks.b_head = NULL;
 	stacks.b_tail = NULL;
 
-	//f ()
+	//f
 
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
-	// if (is_sorted(stacks.a_head) == 0)
-	// {
-	// 	write(1, "OK\n", 3);
-	// 	exit(EXIT_SUCCESS);
-	// }
+	if (is_sorted(stacks.a_head) == 0)
+	{
+		write(1, "OK\n", 3);
+		exit(EXIT_SUCCESS);
+	}
 		
 	// stacks.a_tail = get_to_tail(stacks.a_head);
 	// stacks.b_tail = get_to_tail(stacks.b_head);

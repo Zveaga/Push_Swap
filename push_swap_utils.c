@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 20:11:50 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/05 16:07:23 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	is_sorted(node_t *head)
 	{
 		if(tracker->data > tracker->next->data)
 			return (1);
-		
 		tracker = tracker->next;
 	}
 	return (0);
@@ -107,8 +106,22 @@ int	check_digit(char *num)
 	while (num[i])
 	{
 		if (ft_isdigit(num[i]) == 1)
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
+
+// int	check_duplicate(char **argv, int i)
+// {
+// 	int	j;
+
+// 	j = 1;
+// 	while(argv[j])
+// 	{
+// 		if (ft_atoi(argv[j]) == ft_atoi(argv[i]))
+// 			return (0);
+// 		j++;
+// 	}
+// 	return (1);
+// }

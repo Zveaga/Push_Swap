@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/11 13:37:56 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/11 13:38:36 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/05 15:05:58 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	ft_isdigit(int a)
 {
 	if (a >= '0' && a <= '9')
 	{
-		return (1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 
 // int	main(void)
