@@ -3,32 +3,43 @@
 void	ft_bubble_sort(node_t **head)
 {
 	node_t	*tracker;
-	
-	tracker = (*head);
-	if ((*head)->next->next == NULL) // only 2 elements
+	node_t	*elem1;
+	node_t	*elem2;
+	node_t	*elem3;
+
+	if (*head == NULL || (*head)->next == NULL || (*head)->next->next == NULL)
 		return ;
+	tracker = *head;
+	elem1 = tracker;
+	elem2 = tracker->next;
+	elem3 = tracker->next->next;
 	while (tracker->next != NULL)
 	{
-		if (tracker->data > tracker->next->data)
+		printf("%d\n", tracker->data);
+		if (elem1->data > elem2->data)
 		{
-			if (tracker->previous == NULL)
+			if (elem1->previous == NULL)
 			{
-				tracker->next->previous = NULL;
+				elem2->previous = NULL;
+				(*head) = elem2;
+
 			}
 			else
 			{
-				tracker->next->previous = tracker->previous;
+				elem2->previous = elem1->previous;
+				elem1->previous->next = elem2;
 			}
 
-			tracker->next = tracker->next->next;
-			tracker->next->previous = tracker->previous;
-			if (tracker->next->next != NULL)
-				tracker->next->next->previous = tracker;
+			elem2->next = elem1;
+			elem1->next = elem3;
 			
-			tracker->previous = tracker->next;
+			if (elem1->previous != NULL)
+				elem1->previous = elem2;
 		}
-		else
-			return ;
+		// else
+		// 	return ;
+		
 		tracker = tracker->next;
 	}
+
 }
