@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/04 14:40:36 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/07 18:29:00 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,43 +44,52 @@ rrr : rra and rrb at the same time.			---DONE---
 
 #include"push_swap.h"
 
-void	swap(node_t **head)
+void	swap(node_t **head) ///to do, for 2 elements
 {
 	node_t	*elem_1;
 	node_t	*elem_2;
 	node_t	*elem_3;
 
-	if (*head == NULL || (*head)->next == NULL || (*head)->next->next == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return ;
+	// if ((*head)->next->next == NULL)
+	// 	swap_two(head, tail);
 	elem_1 = *head;
 	elem_2 = (*head)->next;
 	elem_3 = (*head)->next->next;
-	
 	elem_1->previous = elem_2;
 	elem_1->next = elem_3;
-	
 	elem_2->previous = NULL;
 	elem_2->next = elem_1;
-
 	elem_3->previous = elem_1;
-
 	(*head) = elem_2;
+}
+
+void	swap_a(node_t **head)
+{
+	swap(head);
+	write(1, "sa\n", 3);
+}
+
+void	swap_b(node_t **head)
+{
+	swap(head);
+	write(1, "sb\n", 3);
 }
 
 void	swap_both(node_t **head_a, node_t **head_b)
 {
 	swap(head_a);
 	swap(head_b);
+	write(1, "ss\n", 3);
 }
 
 void	b_head_is_null(node_t **head_a, node_t **head_b, node_t **tail_b, node_t **elem1_b, node_t **elem2_a, node_t **elem1_a)
 {
 		*elem1_b = *elem1_a;
 		(*elem2_a)->previous = NULL;
-		
 		(*elem1_b)->next = NULL;
 		(*elem1_b)->previous = NULL;
-		
 		*head_a = *elem2_a;
 		*head_b = *elem1_b;
 		*tail_b = *elem1_b;
@@ -103,7 +112,7 @@ void	push(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
 	if (elem1_b == NULL)
 	{
 		b_head_is_null(head_a, head_b, tail_b, &elem1_b, &elem2_a, &elem1_a);
-		return;
+		return ;
 	}
 	elem1_a->next = elem1_b;
 	elem1_b->previous = elem1_a;
@@ -113,6 +122,94 @@ void	push(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
 		*tail_a = NULL;
 	*head_a = elem2_a;
 	*head_b = elem1_a;
+}
+
+void	push_to_b(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	push(head_a, head_b, tail_a, tail_b);
+	write(1, "pb\n", 3);
+}
+
+void	push_to_a(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a)
+{
+	push(head_b, head_a, tail_b, tail_a);
+	write(1, "pb\n", 3);
+}
+
+void	rotate(node_t **head, node_t **tail) ///to do: for only 2 elements
+{
+	node_t	*first;
+	node_t	*second;
+	node_t	*last;
+
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	first = (*head);
+	last = (*tail);
+	second = (*head)->next;
+	first->next = NULL;
+	first->previous = last;
+	last->next = first;
+	second->previous = NULL;
+	(*head) = second;
+	(*tail) = first;
+}
+
+void	rotate_a(node_t **head_a, node_t **tail_a)
+{
+	rotate(head_a, tail_a);
+	write(1, "ra\n", 3);
+}
+
+void	rotate_b(node_t **head_b, node_t **tail_b)
+{
+	rotate(head_b, tail_b);
+	write(1, "rb\n", 3);
+}
+
+void	rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	rotate(head_a, tail_b);
+	rotate(head_b, tail_a);
+	write(1, "rr\n", 3);
+}
+
+void	reverse_rotate(node_t **head, node_t **tail)
+{
+	node_t	*first;
+	node_t	*bf_last;
+	node_t	*last;
+	
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	first = (*head);
+	bf_last = (*tail)->previous;
+	last = (*tail);
+	last->next = first;
+	last->previous = NULL;
+	bf_last->next = NULL;
+	first->previous = last;
+	*head = last;
+	*tail = bf_last;
+}
+
+void	reverse_rotate_a(node_t **head_a, node_t **tail_a)
+{
+	reverse_rotate(head_a, tail_a);
+	write(1, "rra\n", 4);
+}
+
+void	reverse_rotate_b(node_t **head_b, node_t **tail_b)
+{
+	reverse_rotate(head_b, tail_b);
+	write(1, "rrb\n", 4);
+}
+
+void	reverse_rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	reverse_rotate(head_a, tail_a);
+	reverse_rotate(head_b, tail_b);
+	write(1, "rrr\n", 4);
 }
 
 void	swap_two(node_t **head, node_t **tail)
@@ -128,63 +225,4 @@ void	swap_two(node_t **head, node_t **tail)
 	(*tail)->previous = NULL;
 	*head = last;
 	*tail = first;
-}
-
-void	rotate(node_t **head, node_t **tail) ///to do: for only 2 elements
-{
-	node_t	*first;
-	node_t	*second;
-	node_t	*last;
-
-	if (*head == NULL || (*head)->next == NULL)
-		return ;
-	first = (*head);
-	last = (*tail);
-	second = (*head)->next;
-	
-	first->next = NULL;
-	first->previous = last;
-	
-	last->next = first;
-
-	second->previous = NULL;
-	(*head) = second;
-	
-	(*tail) = first;
-		 
-}
-
-void	rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
-{
-	rotate(head_a, tail_b);
-	rotate(head_b, tail_a);
-}
-
-void	reverse_rotate(node_t **head, node_t **tail)
-{
-	node_t	*first;
-	node_t	*bf_last;
-	node_t	*last;
-	
-	if (*head == NULL || (*head)->next == NULL)
-		return ;
-	first = (*head);
-	bf_last = (*tail)->previous;
-	last = (*tail);
-
-	last->next = first;
-	last->previous = NULL;
-	
-	bf_last->next = NULL;
-
-	first->previous = last;
-	
-	*head = last;
-	*tail = bf_last;
-}
-
-void	reverse_rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
-{
-	reverse_rotate(head_a, tail_a);
-	reverse_rotate(head_b, tail_b);
 }

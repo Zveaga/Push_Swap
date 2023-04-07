@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/06 18:24:39 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/07 18:30:33 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,25 @@ void			insert_front(node_t **head, int value);
 
 void 			insert_end(node_t **head, node_t **tail, int value);
 
+void			swap_a(node_t **head);
+
+void			swap_b(node_t **head);
+
+void			swap_both(node_t **head_a, node_t **head_b);
+
+void			push_to_b(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b);
+
+void			push_to_a(node_t **head_b, node_t **head_a, node_t **tail_b, node_t **tail_a);
+
+void			rotate_a(node_t **head_a, node_t **tail_a);
+
+void			rotate_b(node_t **head_b, node_t **tail_b);
+
 void			swap(node_t **head);
+
+void			reverse_rotate_a(node_t **head_a, node_t **tail_a);
+
+void			reverse_rotate_b(node_t **head_b, node_t **tail_b);
 
 void			swap_both(node_t **head_a, node_t **head_b);
 
@@ -60,9 +78,15 @@ int				is_sorted(node_t *head);
 
 int				check_digit(char *num);
 
-int				check_duplicate(char **argv, long number, int i);
+int				check_duplicate(char **argv, int i);
 
-void			ft_bubble_sort(node_t **head);
+node_t 			*get_to_tail(node_t *head);
+
+int				node_count(node_t *lst);
+
+void			set_index(node_t *head);
+
+void			raise_error();
 
 
 #endif

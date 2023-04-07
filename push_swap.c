@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/07 10:47:25 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/07 18:35:05 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	print_reversed(node_t *tail)
 {
 	node_t	*tracker;
 
-	//printf("Reversed print: ");
 	tracker = tail;
 	while (tracker != NULL)
 	{
-		printf("%d", tracker->data);
+		printf("%d(%d) ", tracker->data, tracker->index);
 		tracker = tracker->previous;
 	}
 	printf("\n");
@@ -44,11 +43,10 @@ void	print_normal(node_t *head)
 {
 	node_t	*tracker;
 
-	//printf("Normal print:   ");
 	tracker = head;
 	while (tracker != NULL)
 	{
-		printf("%d", tracker->data);
+		printf("%d(%d) ", tracker->data, tracker->index);
 		tracker = tracker->next;
 	}
 	printf("\n");
@@ -85,20 +83,11 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 
 		temp = ft_atoi(argv[i]);
 		if (check_digit(argv[i]) == 0)
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
+			raise_error();
 		if (temp < INT_MIN || temp > INT_MAX)
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
-		// if (check_duplicate(argv, temp, i) == 0)
-		// {
-		// 	write(2, "Error\n", 6);
-		// 	exit(EXIT_FAILURE);
-		// }
+			raise_error();
+		if (check_duplicate(argv, i) == 0)
+			raise_error();
 		insert_end(head_a ,tail_a, ft_atoi(argv[i]));
 		i++;
 	}
@@ -112,15 +101,13 @@ int	main (int argc, char **argv)
 	stacks.a_tail = NULL;
 	stacks.b_head = NULL;
 	stacks.b_tail = NULL;
-
+	
+	if (argc == 1)
+		raise_error();
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
-	ft_bubble_sort(&stacks.a_head);
-	// if (is_sorted(stacks.a_head) == 0)
-	// {
-	// 	write(1, "OK\n", 3);
-	// 	exit(EXIT_SUCCESS);
-	// }
-		
+	if (is_sorted(stacks.a_head) == 0)
+		exit(EXIT_SUCCESS);
+	set_index(stacks.a_head);
 	// stacks.a_tail = get_to_tail(stacks.a_head);
 	// stacks.b_tail = get_to_tail(stacks.b_head);
 
@@ -130,26 +117,33 @@ int	main (int argc, char **argv)
 	//---INSTRUCTIONS---   REMOVE BEFORE SUBMISSION!!!!!
 	//swap(&stacks.a_head);
 	//swap(&stacks.b_head);
-
-	//push(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	//push(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	
-	//push(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
+	// //push to b
+	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	
-	//push(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	//push(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	//push(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	// //push to a
+	// push_to_a(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
 
-	//rotate(&stacks.a_head, &stacks.a_tail);
-	//rotate(&stacks.a_head, &stacks.a_tail);
-	//rotate(&stacks.a_head, &stacks.a_tail);
+	// swap(&stacks.b_head);
+
+	// //rotate a
+	// rotate_a(&stacks.a_head, &stacks.a_tail);
+
+	// //rotate b
+	// rotate_b(&stacks.b_head, &stacks.b_tail);
 	
-	//rotate(&stacks.b_head, &stacks.b_tail);
+	// //rv rotate a
+	// reverse_rotate_a(&stacks.a_head, &stacks.a_tail);
+	
+	// //rv rotate b
+	// reverse_rotate_b(&stacks.b_head, &stacks.b_tail);
 
-	//reverse_rotate(&stacks.a_head, &stacks.a_tail);
-	//reverse_rotate(&stacks.b_head, &stacks.b_tail);
-
-	//swap_two(&stacks.b_head, &stacks.b_tail);
+	// //for 2 nodes only!!!
+	// //swap_two(&stacks.b_head, &stacks.b_tail);
 
 
 	//---PRINT--- REMOVE BEFORE SUBMISSION!!!
@@ -158,9 +152,12 @@ int	main (int argc, char **argv)
 
 	printf("Reversed print, stack_a:  ");
 	print_reversed(stacks.a_tail);
+	
 	printf("\n");
+	
 	printf("Normal print,   stack_b:  ");
 	print_normal(stacks.b_head);
+
 
 	printf("Reversed print, stack_b:  ");
 	print_reversed(stacks.b_tail);

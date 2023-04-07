@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/05 16:07:23 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/07 16:10:25 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ rrr : rra and rrb at the same time.
 
 #include"push_swap.h"
 
+void	raise_error()
+{
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
 node_t	*create_node(int value)
 {
 	node_t *new_node;
@@ -42,6 +48,7 @@ node_t	*create_node(int value)
 	if (new_node == NULL)
 		return (NULL);
 	new_node->data = value;
+	new_node->index = 0;
 	new_node->previous = NULL;
 	new_node->next = NULL;
 	return (new_node);
@@ -112,16 +119,29 @@ int	check_digit(char *num)
 	return (1);
 }
 
-// int	check_duplicate(char **argv, int i)
-// {
-// 	int	j;
+int	node_count(node_t *lst)
+{
+	int	count;
 
-// 	j = 1;
-// 	while(argv[j])
-// 	{
-// 		if (ft_atoi(argv[j]) == ft_atoi(argv[i]))
-// 			return (0);
-// 		j++;
-// 	}
-// 	return (1);
-// }
+	count = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
+}
+
+int	check_duplicate(char **argv, int i)
+{
+	int	j;
+
+	j = 1;
+	while(argv[j] != NULL)
+	{
+		if (i != j && ft_atoi(argv[i]) == ft_atoi(argv[j]))
+			return (0);
+		j++;
+	}
+	return (1); 
+}
