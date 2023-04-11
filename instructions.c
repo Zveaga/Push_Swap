@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 16:18:12 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/07 18:29:00 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/08 11:43:56 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ void	swap(node_t **head) ///to do, for 2 elements
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
-	// if ((*head)->next->next == NULL)
-	// 	swap_two(head, tail);
+	if ((*head)->next->next == NULL)
+	{
+		swap_two(head);
+		return ;
+	}
 	elem_1 = *head;
 	elem_2 = (*head)->next;
 	elem_3 = (*head)->next->next;
@@ -212,17 +215,16 @@ void	reverse_rotate_both(node_t **head_a, node_t **head_b, node_t **tail_a, node
 	write(1, "rrr\n", 4);
 }
 
-void	swap_two(node_t **head, node_t **tail)
+void swap_two(node_t **head)
 {
-	node_t	*first;
-	node_t	*last;
-
-	first = *head;
-	last = *tail;
-	(*head)->next = NULL;
-	(*head)->previous = (*tail);
-	(*tail)->next = (*head);
-	(*tail)->previous = NULL;
-	*head = last;
-	*tail = first;
+    node_t *first = *head;
+    node_t *second = first->next;
+	
+    if (*head == NULL)
+        return;
+    first->next = NULL;
+    first->previous = second;
+    second->next = first;
+    second->previous = NULL;
+    *head = second;
 }

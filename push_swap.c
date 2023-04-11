@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/07 18:35:05 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/10 12:41:52 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ int	main (int argc, char **argv)
 	if (is_sorted(stacks.a_head) == 0)
 		exit(EXIT_SUCCESS);
 	set_index(stacks.a_head);
-	// stacks.a_tail = get_to_tail(stacks.a_head);
-	// stacks.b_tail = get_to_tail(stacks.b_head);
+	stacks.a_tail = get_to_tail(stacks.a_head);
+	stacks.b_tail = get_to_tail(stacks.b_head);
 
 	printf("Stack_a head: %d\n", stacks.a_head->data);
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
@@ -119,7 +119,7 @@ int	main (int argc, char **argv)
 	//swap(&stacks.b_head);
 	
 	// //push to b
-	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+	//push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
@@ -131,7 +131,9 @@ int	main (int argc, char **argv)
 	// swap(&stacks.b_head);
 
 	// //rotate a
-	// rotate_a(&stacks.a_head, &stacks.a_tail);
+	//rotate_a(&stacks.a_head, &stacks.a_tail);
+	
+	//push_to_a(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
 
 	// //rotate b
 	// rotate_b(&stacks.b_head, &stacks.b_tail);
@@ -142,16 +144,20 @@ int	main (int argc, char **argv)
 	// //rv rotate b
 	// reverse_rotate_b(&stacks.b_head, &stacks.b_tail);
 
+	//sort_3(&stacks.a_head, &stacks.a_head);
+	
 	// //for 2 nodes only!!!
-	// //swap_two(&stacks.b_head, &stacks.b_tail);
+	//swap_two(&stacks.a_head);
+
+	sort_3(&stacks.a_head, &stacks.a_tail);
 
 
 	//---PRINT--- REMOVE BEFORE SUBMISSION!!!
 	printf("Normal print,   stack_a:  ");
 	print_normal(stacks.a_head);
 
-	printf("Reversed print, stack_a:  ");
-	print_reversed(stacks.a_tail);
+	// printf("Reversed print, stack_a:  ");
+	// print_reversed(stacks.a_tail);
 	
 	printf("\n");
 	

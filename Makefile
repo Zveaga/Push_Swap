@@ -5,6 +5,7 @@ instructions.c \
 push_swap_utils.c \
 push_swap.c \
 set_index.c \
+radix.c \
 
 OBJ = $(SRC:.c=.o)
 
