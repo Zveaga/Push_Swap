@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/07 16:39:21 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/10 13:32:40 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/11 17:57:05 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,33 @@ int	max_bits(int largest)
 	return (bits);
 }
 
-// void	radix_sort(node_t **head_a, node_t **tail_a)
-// {
-// }
+void	radix_sort(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	int	largest;
+	int	largest_bits;
+	int	i;
+	int	j;
+
+	largest = largest_number(*head_a);
+	largest_bits = max_bits(largest);
+	i = 0;
+	while (i < largest_bits)
+	{
+		j = 0;
+		while (j < largest)
+		{
+			if ((((*head_a)->index >> i) & 1) == 1)
+				rotate_a(head_a, tail_b);
+				
+			else
+				push_to_b(head_a, head_b, tail_a, tail_b);
+			j++;
+		}
+		while (*head_b)
+			push_to_a(head_b, head_a, tail_b, tail_a);
+		i++;
+	}
+}
 
 void	sort_3(node_t **head_a, node_t **tail_a)
 {
@@ -61,7 +85,7 @@ void	sort_3(node_t **head_a, node_t **tail_a)
 		swap_a(head_a);
 }
 
-void	sort_5(node_t **head_a, node_t **head_b, node_t tail_a,  node_t tail_b)
-{
-		
-}
+// void	sort_5(node_t **head_a, node_t **head_b, node_t tail_a,  node_t tail_b)
+// {
+	
+// }

@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/10 12:41:52 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/11 17:45:26 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,24 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 	}
 }
 
+void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+{
+	int	nodes;
+	
+	nodes = node_count(*head_a);
+	if (nodes == 3)
+		sort_3(head_a, tail_a);
+	// else if (nodes == 5)
+	// 	sort_5
+	else
+		radix_sort(head_a, head_b, tail_a, tail_b);
+
+	// else
+	// free();
+	// free();
+	
+}
+
 int	main (int argc, char **argv)
 {
 	stacks_t stacks;
@@ -108,6 +126,8 @@ int	main (int argc, char **argv)
 	if (is_sorted(stacks.a_head) == 0)
 		exit(EXIT_SUCCESS);
 	set_index(stacks.a_head);
+	sorting_selector(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
+
 	stacks.a_tail = get_to_tail(stacks.a_head);
 	stacks.b_tail = get_to_tail(stacks.b_head);
 

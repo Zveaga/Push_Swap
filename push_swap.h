@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/10 12:35:55 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/11 17:38:09 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				check_duplicate(char **argv, int i);
 
 node_t 			*get_to_tail(node_t *head);
 
-int				node_count(node_t *lst);
+int				node_count(node_t *head);
 
 void			set_index(node_t *head);
 
@@ -93,6 +93,8 @@ void			sort_3(node_t **head_a, node_t **tail_a);
 int				largest_number(node_t *head);
 
 int				max_bits(int largest);
+
+void			radix_sort(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b);
 
 
 #endif

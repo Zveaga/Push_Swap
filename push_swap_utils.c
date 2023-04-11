@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/07 16:10:25 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/11 17:31:51 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,14 @@ int	check_digit(char *num)
 	return (1);
 }
 
-int	node_count(node_t *lst)
+int	node_count(node_t *head)
 {
 	int	count;
 
 	count = 0;
-	while (lst != NULL)
+	while (head != NULL)
 	{
-		lst = lst->next;
+		head = head->next;
 		count++;
 	}
 	return (count);
