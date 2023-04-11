@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/07 18:30:33 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/10 12:35:55 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			reverse_rotate(node_t **head, node_t **tail);
 
 void			reverse_rotate_both(node_t **head_a, node_t **tail_a, node_t **head_b, node_t **tail_b);
 
-void			swap_two(node_t **head, node_t **tail);
+void			swap_two(node_t **head);
 
 int				is_sorted(node_t *head);
 
@@ -87,6 +87,12 @@ int				node_count(node_t *lst);
 void			set_index(node_t *head);
 
 void			raise_error();
+
+void			sort_3(node_t **head_a, node_t **tail_a);
+
+int				largest_number(node_t *head);
+
+int				max_bits(int largest);
 
 
 #endif
