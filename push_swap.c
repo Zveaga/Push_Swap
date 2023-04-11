@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/11 17:45:26 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/11 18:11:05 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,12 @@ void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t 
 	int	nodes;
 	
 	nodes = node_count(*head_a);
+	printf("nr of nodes: %d\n\n", nodes);
 	if (nodes == 3)
 		sort_3(head_a, tail_a);
 	// else if (nodes == 5)
 	// 	sort_5
-	else
+	else if (is_sorted(*head_a) != 0)
 		radix_sort(head_a, head_b, tail_a, tail_b);
 
 	// else
