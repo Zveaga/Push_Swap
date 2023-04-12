@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/07 16:39:21 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 14:11:01 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 15:00:45 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,28 +101,6 @@ void	sort_3(node_t **head_a, node_t **tail_a)
 		swap_a(head_a);
 }
 
-
-// 4 3 2 1
-// 4 3 1 2
-// 4 2 3 1
-// 4 2 1 3
-
-// 3 4 2 1
-// 3 4 1 2
-// 3 2 1 4
-// 3 2 4 1
-
-// 2 4 3 1
-// 2 3 4 1
-// 2 1 4 3
-// 2 1 3 4
-
-// 1 4 3 2
-// 1 4 2 3
-// 1 3 4 2
-// 1 3 2 4
-
-// 1 2 4 3
 void	sort_4(node_t **head_a, node_t **head_b, node_t **tail_a,  node_t **tail_b)
 {
 	int		smallest;

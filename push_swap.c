@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 14:09:59 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 16:53:25 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,58 @@ void	print_normal(node_t *head)
 	printf("\n");
 }
 
-node_t *get_to_tail(node_t *head)
+void	deallocate_stack(node_t **head, node_t **tail)
 {
-	node_t	*tracker;
+	node_t *tracker;
 	
-	if (head == NULL)
-		return (NULL);
-	tracker = head;
-	while (tracker->next != NULL)
+	if (*head == NULL)
+		return ;
+	tracker = *head;
+	while(tracker->next != NULL)
+	{
 		tracker = tracker->next;
-	return (tracker);
+		free(tracker->previous);
+	}
+	free(tracker);
+	(*head) = NULL;
+	(*tail) = NULL;
+	
 }
 
-void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
+void	parse_quotes(char **args)
+{
+	int		i;
+	int		flag;
+
+	i = 0;
+	flag = 0;
+	while (args[1][i] && flag == 0)
+	{
+		if (args[1][i] != ' ')
+		{
+			flag = 1;
+			if(check_digit(args[i]) == 1)
+				raise_error();
+		}
+		i++;
+	}
+	if (flag == 0)
+		raise_error();
+}
+
+void	parse_input(int argc, char **argv, node_t **head_a, node_t **tail_a)
 {
 	int		i;
 	long	temp;
-	char	**argv;
 	
 	i = 0;
 	if (argc == 2)
-		argv = ft_split(args[1], ' ');
-	else
 	{
-		i = 1;
-		argv = args;
+		parse_quotes(argv);
+		argv = ft_split(argv[1], ' ');
 	}
-	// if (argv[i] == ' ')
-	// 	raise_error();
+	else
+		i = 1;
 	while (argv[i])
 	{
 		temp = ft_atoi(argv[i]);
@@ -85,20 +109,14 @@ void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t 
 	int	nodes;
 	
 	nodes = node_count(*head_a);
-	printf("nr of nodes: %d\n\n", nodes);
 	if (nodes == 3)
 		sort_3(head_a, tail_a);
 	else if (nodes == 4)
 		sort_4(head_a, head_b, tail_a, tail_b);
 	else if (nodes == 5)
 		sort_5(head_a, head_b, tail_a, tail_b);
-	else if (nodes > 5)
+	else
 		radix_sort(head_a, head_b, tail_a, tail_b);
-
-	// else
-	// free();
-	// free();
-	
 }
 
 int	main (int argc, char **argv)
@@ -112,69 +130,20 @@ int	main (int argc, char **argv)
 	
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
 	if (is_sorted(stacks.a_head) == 0)
+	{
+		deallocate_stack(&stacks.a_head, &stacks.a_tail);
+		deallocate_stack(&stacks.b_head, &stacks.b_tail);
 		exit(EXIT_SUCCESS);
+	}
 	set_index(stacks.a_head);
 	sorting_selector(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 
-	// stacks.a_tail = get_to_tail(stacks.a_head);
-	// stacks.b_tail = get_to_tail(stacks.b_head);
-
-	printf("Stack_a head: %d\n", stacks.a_head->data);
-	printf("Stack_a tail: %d\n", stacks.a_tail->data);
-
-	//---INSTRUCTIONS---   REMOVE BEFORE SUBMISSION!!!!!
-	//swap(&stacks.a_head);
-	//swap(&stacks.b_head);
-	
-	// //push to b
-	//push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	// push_to_b(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-	
-	// //push to a
-	// push_to_a(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
-
-	// swap(&stacks.b_head);
-
-	// //rotate a
-	//rotate_a(&stacks.a_head, &stacks.a_tail);
-	
-	//push_to_a(&stacks.b_head, &stacks.a_head, &stacks.b_tail, &stacks.a_tail);
-
-	// //rotate b
-	// rotate_b(&stacks.b_head, &stacks.b_tail);
-	
-	// //rv rotate a
-	// reverse_rotate_a(&stacks.a_head, &stacks.a_tail);
-	
-	// //rv rotate b
-	// reverse_rotate_b(&stacks.b_head, &stacks.b_tail);
-
-	//sort_3(&stacks.a_head, &stacks.a_head);
-	
-	// //for 2 nodes only!!!
-	//swap_two(&stacks.a_head);
-
-	//sort_3(&stacks.a_head, &stacks.a_tail);
-
-
-	//---PRINT--- REMOVE BEFORE SUBMISSION!!!
-	printf("Normal print,   stack_a:  ");
+	//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
+	printf("After sorting (stack_a):  ");
 	print_normal(stacks.a_head);
-
-	// printf("Reversed print, stack_a:  ");
-	// print_reversed(stacks.a_tail);
 	
-	printf("\n");
-	
-	printf("Normal print,   stack_b:  ");
-	print_normal(stacks.b_head);
-
-
-	printf("Reversed print, stack_b:  ");
-	print_reversed(stacks.b_tail);
+	deallocate_stack(&stacks.a_head, &stacks.a_tail);
+	deallocate_stack(&stacks.b_head, &stacks.b_tail);
 	return (0);
 }
 
