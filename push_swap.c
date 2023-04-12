@@ -6,25 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/11 18:11:05 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 10:25:25 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
-
-void	init(node_t **head, node_t **tail, int value)
-{
-	node_t	*new_node;
-	
-	new_node = create_node(value);
-	if (new_node == NULL)
-		return ;
-	new_node->data = value;
-	new_node->previous = NULL;
-	new_node->next = NULL;
-	*head = new_node;
-	*tail = new_node;
-}
 
 void	print_reversed(node_t *tail)
 {
@@ -67,6 +53,7 @@ node_t *get_to_tail(node_t *head)
 void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 {
 	int		i;
+	long	temp;
 	char	**argv;
 	
 	i = 0;
@@ -79,8 +66,6 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 	}
 	while (argv[i])
 	{
-		long	temp;
-
 		temp = ft_atoi(argv[i]);
 		if (check_digit(argv[i]) == 0)
 			raise_error();
@@ -103,7 +88,7 @@ void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t 
 		sort_3(head_a, tail_a);
 	// else if (nodes == 5)
 	// 	sort_5
-	else if (is_sorted(*head_a) != 0)
+	else if (nodes > 5)
 		radix_sort(head_a, head_b, tail_a, tail_b);
 
 	// else
@@ -129,8 +114,8 @@ int	main (int argc, char **argv)
 	set_index(stacks.a_head);
 	sorting_selector(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
 
-	stacks.a_tail = get_to_tail(stacks.a_head);
-	stacks.b_tail = get_to_tail(stacks.b_head);
+	// stacks.a_tail = get_to_tail(stacks.a_head);
+	// stacks.b_tail = get_to_tail(stacks.b_head);
 
 	printf("Stack_a head: %d\n", stacks.a_head->data);
 	printf("Stack_a tail: %d\n", stacks.a_tail->data);
@@ -170,7 +155,7 @@ int	main (int argc, char **argv)
 	// //for 2 nodes only!!!
 	//swap_two(&stacks.a_head);
 
-	sort_3(&stacks.a_head, &stacks.a_tail);
+	//sort_3(&stacks.a_head, &stacks.a_tail);
 
 
 	//---PRINT--- REMOVE BEFORE SUBMISSION!!!
