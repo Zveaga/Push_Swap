@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   swap.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/12 16:57:40 by raanghel      #+#    #+#                 */
+/*   Updated: 2023/04/12 17:25:48 by raanghel      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"push_swap.h"
 
-void	swap(node_t **head) ///to do, for 2 elements
+void	swap(t_stack **head)
 {
-	node_t	*elem_1;
-	node_t	*elem_2;
-	node_t	*elem_3;
+	t_stack	*elem_1;
+	t_stack	*elem_2;
+	t_stack	*elem_3;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
@@ -22,4 +34,37 @@ void	swap(node_t **head) ///to do, for 2 elements
 	elem_2->next = elem_1;
 	elem_3->previous = elem_1;
 	(*head) = elem_2;
+}
+
+void	swap_a(t_stack **head)
+{
+	swap(head);
+	write(1, "sa\n", 3);
+}
+
+void	swap_b(t_stack **head)
+{
+	swap(head);
+	write(1, "sb\n", 3);
+}
+
+void	swap_both(t_stack **head_a, t_stack **head_b)
+{
+	swap(head_a);
+	swap(head_b);
+	write(1, "ss\n", 3);
+}
+
+void swap_two(t_stack **head)
+{
+    t_stack *first = *head;
+    t_stack *second = first->next;
+	
+    if (*head == NULL)
+        return;
+    first->next = NULL;
+    first->previous = second;
+    second->next = first;
+    second->previous = NULL;
+    *head = second;
 }

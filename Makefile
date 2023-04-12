@@ -1,11 +1,15 @@
 NAME = push_swap.a
 
 SRC = \
-instructions.c \
-push_swap_utils.c \
 push_swap.c \
-set_index.c \
+push_swap_utils.c \
+push.c \
 radix.c \
+reverse_rotate.c \
+rotate.c \
+set_index.c \
+swap.c \
+
 
 OBJ = $(SRC:.c=.o)
 

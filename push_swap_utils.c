@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/11 18:07:22 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 17:29:44 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ rrr : rra and rrb at the same time.
 
 #include"push_swap.h"
 
-void	raise_error()
+void	raise_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
-node_t	*create_node(int value)
+t_stack	*create_node(int value)
 {
-	node_t *new_node;
+	t_stack	*new_node;
 
-	new_node = malloc(sizeof(node_t));
+	new_node = malloc(sizeof(t_stack));
 	if (new_node == NULL)
 		return (NULL);
 	new_node->data = value;
@@ -54,10 +54,10 @@ node_t	*create_node(int value)
 	return (new_node);
 }
 
-void	insert_front(node_t **head, int value)
+void	insert_front(t_stack **head, int value)
 {
-	node_t *new_node;
-	
+	t_stack	*new_node;
+
 	new_node = create_node(value);
 	if (new_node == NULL)
 		return ;
@@ -68,9 +68,9 @@ void	insert_front(node_t **head, int value)
 	*head = new_node;
 }
 
-void insert_end(node_t **head, node_t **tail, int value)
+void	insert_end(t_stack **head, t_stack **tail, int value)
 {
-	node_t	*new_node;
+	t_stack	*new_node;
 
 	new_node = create_node(value);
 	if (new_node == NULL)
@@ -86,17 +86,16 @@ void insert_end(node_t **head, node_t **tail, int value)
 	new_node->next = NULL;
 	(*tail)->next = new_node;
 	*tail = new_node;
-	
 }
 
-int	is_sorted(node_t *head)
+int	is_sorted(t_stack *head)
 {
-	node_t	*tracker;
+	t_stack	*tracker;
 
 	tracker = head;
-	while(tracker != NULL && tracker->next != NULL)
+	while (tracker != NULL && tracker->next != NULL)
 	{
-		if(tracker->data > tracker->next->data)
+		if (tracker->data > tracker->next->data)
 			return (1);
 		tracker = tracker->next;
 	}
@@ -119,7 +118,7 @@ int	check_digit(char *num)
 	return (1);
 }
 
-int	node_count(node_t *head)
+int	node_count(t_stack *head)
 {
 	int	count;
 
@@ -137,11 +136,11 @@ int	check_duplicate(char **argv, int i)
 	int	j;
 
 	j = 1;
-	while(argv[j] != NULL)
+	while (argv[j] != NULL)
 	{
 		if (i != j && ft_atoi(argv[i]) == ft_atoi(argv[j]))
 			return (0);
 		j++;
 	}
-	return (1); 
+	return (1);
 }

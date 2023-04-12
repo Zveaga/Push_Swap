@@ -1,10 +1,10 @@
 #include"push_swap.h"
 
 
-void	set_index(node_t *head)
+void	set_index(t_stack *head)
 {
-	node_t	*tracker;
-	node_t	*largest;
+	t_stack	*tracker;
+	t_stack	*largest;
 	int		list_size;
 
 	list_size = node_count(head);

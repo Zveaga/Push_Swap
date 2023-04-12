@@ -6,15 +6,15 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/07 16:39:21 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 15:00:45 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 17:15:56 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-int	largest_number(node_t *head)
+int	largest_number(t_stack *head)
 {
-	node_t	*tracker;
+	t_stack	*tracker;
 	int		largest;
 
 	tracker = head;
@@ -28,9 +28,9 @@ int	largest_number(node_t *head)
 	return (largest);
 }
 
-int	smallest_number(node_t *head)
+int	smallest_number(t_stack *head)
 {
-	node_t	*tracker;
+	t_stack	*tracker;
 	int		smallest;
 
 	tracker = head;
@@ -57,7 +57,7 @@ int	max_bits(int largest)
 	return (bits);
 }
 
-void	radix_sort(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+void	radix_sort(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
 {
 	int	largest;
 	int	largest_bits;
@@ -85,7 +85,7 @@ void	radix_sort(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail
 	}
 }
 
-void	sort_3(node_t **head_a, node_t **tail_a)
+void	sort_3(t_stack **head_a, t_stack **tail_a)
 {
 	int	largest;
 	
@@ -101,7 +101,7 @@ void	sort_3(node_t **head_a, node_t **tail_a)
 		swap_a(head_a);
 }
 
-void	sort_4(node_t **head_a, node_t **head_b, node_t **tail_a,  node_t **tail_b)
+void	sort_4(t_stack **head_a, t_stack **head_b, t_stack **tail_a,  t_stack **tail_b)
 {
 	int		smallest;
 
@@ -122,7 +122,7 @@ void	sort_4(node_t **head_a, node_t **head_b, node_t **tail_a,  node_t **tail_b)
 	push_to_a(head_b, head_a, tail_b, tail_a);
 }
 
-void	sort_5(node_t **head_a, node_t **head_b, node_t **tail_a,  node_t **tail_b)
+void	sort_5(t_stack **head_a, t_stack **head_b, t_stack **tail_a,  t_stack **tail_b)
 {
 	int	smallest;
 

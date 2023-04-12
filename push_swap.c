@@ -6,15 +6,15 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 16:53:25 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 18:03:48 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	print_reversed(node_t *tail)
+void	print_reversed(t_stack *tail)
 {
-	node_t	*tracker;
+	t_stack	*tracker;
 
 	tracker = tail;
 	while (tracker != NULL)
@@ -25,9 +25,9 @@ void	print_reversed(node_t *tail)
 	printf("\n");
 }
 
-void	print_normal(node_t *head)
+void	print_normal(t_stack *head)
 {
-	node_t	*tracker;
+	t_stack	*tracker;
 
 	tracker = head;
 	while (tracker != NULL)
@@ -38,9 +38,9 @@ void	print_normal(node_t *head)
 	printf("\n");
 }
 
-void	deallocate_stack(node_t **head, node_t **tail)
+void	deallocate_stack(t_stack **head, t_stack **tail)
 {
-	node_t *tracker;
+	t_stack *tracker;
 	
 	if (*head == NULL)
 		return ;
@@ -68,7 +68,7 @@ void	parse_quotes(char **args)
 		if (args[1][i] != ' ')
 		{
 			flag = 1;
-			if(check_digit(args[i]) == 1)
+			if (check_digit(args[i]) == 1)
 				raise_error();
 		}
 		i++;
@@ -77,11 +77,11 @@ void	parse_quotes(char **args)
 		raise_error();
 }
 
-void	parse_input(int argc, char **argv, node_t **head_a, node_t **tail_a)
+void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 {
 	int		i;
 	long	temp;
-	
+
 	i = 0;
 	if (argc == 2)
 	{
@@ -104,7 +104,7 @@ void	parse_input(int argc, char **argv, node_t **head_a, node_t **tail_a)
 	}
 }
 
-void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t **tail_b)
+void	sorting_selector(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
 {
 	int	nodes;
 	
@@ -121,13 +121,12 @@ void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t 
 
 int	main (int argc, char **argv)
 {
-	stacks_t stacks;
+	t_stacks stacks;
 
 	stacks.a_head = NULL;
 	stacks.a_tail = NULL;
 	stacks.b_head = NULL;
 	stacks.b_tail = NULL;
-	
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
 	if (is_sorted(stacks.a_head) == 0)
 	{
@@ -141,7 +140,15 @@ int	main (int argc, char **argv)
 	//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
 	printf("After sorting (stack_a):  ");
 	print_normal(stacks.a_head);
+	printf("\n");
 	
+	// printf("Normal print,   stack_b:  ");
+	// print_normal(stacks.b_head);
+
+
+	// printf("Reversed print, stack_b:  ");
+	// print_reversed(stacks.b_tail);
+
 	deallocate_stack(&stacks.a_head, &stacks.a_tail);
 	deallocate_stack(&stacks.b_head, &stacks.b_tail);
 	return (0);
