@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 10:25:25 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/12 14:09:59 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	parse_input(int argc, char **args, node_t **head_a, node_t **tail_a)
 		i = 1;
 		argv = args;
 	}
+	// if (argv[i] == ' ')
+	// 	raise_error();
 	while (argv[i])
 	{
 		temp = ft_atoi(argv[i]);
@@ -86,8 +88,10 @@ void	sorting_selector(node_t **head_a, node_t **head_b, node_t **tail_a, node_t 
 	printf("nr of nodes: %d\n\n", nodes);
 	if (nodes == 3)
 		sort_3(head_a, tail_a);
-	// else if (nodes == 5)
-	// 	sort_5
+	else if (nodes == 4)
+		sort_4(head_a, head_b, tail_a, tail_b);
+	else if (nodes == 5)
+		sort_5(head_a, head_b, tail_a, tail_b);
 	else if (nodes > 5)
 		radix_sort(head_a, head_b, tail_a, tail_b);
 
@@ -106,8 +110,6 @@ int	main (int argc, char **argv)
 	stacks.b_head = NULL;
 	stacks.b_tail = NULL;
 	
-	if (argc == 1)
-		raise_error();
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
 	if (is_sorted(stacks.a_head) == 0)
 		exit(EXIT_SUCCESS);

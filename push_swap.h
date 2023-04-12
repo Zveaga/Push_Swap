@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/11 17:38:09 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/12 14:10:22 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void			set_index(node_t *head);
 void			raise_error();
 
 void			sort_3(node_t **head_a, node_t **tail_a);
+
+void			sort_4(node_t **head_a, node_t **head_b, node_t **tail_a,  node_t **tail_b);
+
+void			sort_5(node_t **head_a, node_t **head_b, node_t **tail_a,  node_t **tail_b);
 
 int				largest_number(node_t *head);
 
