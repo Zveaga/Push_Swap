@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/12 16:57:29 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 18:06:26 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/13 13:15:56 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	b_head_is_null(t_stack **head_a, t_stack **head_b, t_stack **tail_b, t_stac
 		*tail_b = *elem1_b;
 }
 
-void	push(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
+void	push(t_stack **head_a, t_stack **head_b, \
+			t_stack **tail_a, t_stack **tail_b)
 {
 	t_stack	*elem1_a;
 	t_stack	*elem2_a;
@@ -52,13 +53,15 @@ void	push(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b
 	*head_b = elem1_a;
 }
 
-void	push_to_b(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
+void	push_to_b(t_stack **head_a, t_stack **head_b, \
+					t_stack **tail_a, t_stack **tail_b)
 {
 	push(head_a, head_b, tail_a, tail_b);
 	write(1, "pb\n", 3);
 }
 
-void	push_to_a(t_stack **head_b, t_stack **head_a, t_stack **tail_b, t_stack **tail_a)
+void	push_to_a(t_stack **head_b, t_stack **head_a, \
+					t_stack **tail_b, t_stack **tail_a)
 {
 	push(head_b, head_a, tail_b, tail_a);
 	write(1, "pb\n", 3);

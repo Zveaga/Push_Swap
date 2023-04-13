@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/12 17:01:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 17:16:03 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/13 12:46:23 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	reverse_rotate(t_stack **head, t_stack **tail)
 	t_stack	*first;
 	t_stack	*bf_last;
 	t_stack	*last;
-	
+
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	first = (*head);
@@ -43,7 +43,8 @@ void	reverse_rotate_b(t_stack **head_b, t_stack **tail_b)
 	write(1, "rrb\n", 4);
 }
 
-void	reverse_rotate_both(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
+void	reverse_rotate_both(t_stack **head_a, t_stack **head_b,
+							t_stack **tail_a, t_stack **tail_b)
 {
 	reverse_rotate(head_a, tail_a);
 	reverse_rotate(head_b, tail_b);
