@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 18:03:48 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/13 13:30:52 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,21 @@ void	print_normal(t_stack *head)
 	tracker = head;
 	while (tracker != NULL)
 	{
-		printf("%d(%d) ", tracker->data, tracker->index);
+		// printf("%d(%d) ", tracker->data, tracker->index);
+		printf("%d ", tracker->data);
 		tracker = tracker->next;
 	}
-	printf("\n");
+	//printf("\n");
 }
 
 void	deallocate_stack(t_stack **head, t_stack **tail)
 {
-	t_stack *tracker;
-	
+	t_stack	*tracker;
+
 	if (*head == NULL)
 		return ;
 	tracker = *head;
-	while(tracker->next != NULL)
+	while (tracker->next != NULL)
 	{
 		tracker = tracker->next;
 		free(tracker->previous);
@@ -53,7 +54,6 @@ void	deallocate_stack(t_stack **head, t_stack **tail)
 	free(tracker);
 	(*head) = NULL;
 	(*tail) = NULL;
-	
 }
 
 void	parse_quotes(char **args)
@@ -99,16 +99,18 @@ void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 			raise_error();
 		if (check_duplicate(argv, i) == 0)
 			raise_error();
-		insert_end(head_a ,tail_a, ft_atoi(argv[i]));
+		insert_end(head_a, tail_a, ft_atoi(argv[i]));
 		i++;
 	}
 }
 
-void	sorting_selector(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
+void	sorting_selector(t_stack **head_a, t_stack **head_b, \
+						t_stack **tail_a, t_stack **tail_b)
 {
 	int	nodes;
-	
+
 	nodes = node_count(*head_a);
+	printf("Nr of nodes: %d\n", nodes);
 	if (nodes == 3)
 		sort_3(head_a, tail_a);
 	else if (nodes == 4)
@@ -119,9 +121,9 @@ void	sorting_selector(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_st
 		radix_sort(head_a, head_b, tail_a, tail_b);
 }
 
-int	main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stacks stacks;
+	t_stacks	stacks;
 
 	stacks.a_head = NULL;
 	stacks.a_tail = NULL;
@@ -135,23 +137,21 @@ int	main (int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 	set_index(stacks.a_head);
-	sorting_selector(&stacks.a_head, &stacks.b_head, &stacks.a_tail, &stacks.b_tail);
-
+	sorting_selector(&stacks.a_head, &stacks.b_head, \
+					&stacks.a_tail, &stacks.b_tail);
 	//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
-	printf("After sorting (stack_a):  ");
-	print_normal(stacks.a_head);
-	printf("\n");
-	
+	// printf("After sorting (stack_a):  ");
+	// print_normal(stacks.a_head);
+	// printf("\n");
+	// if (is_sorted(stacks.a_head) == 0)
+	// 	printf("OK");
+	// else
+	// 	printf("Error");
 	// printf("Normal print,   stack_b:  ");
 	// print_normal(stacks.b_head);
-
-
 	// printf("Reversed print, stack_b:  ");
 	// print_reversed(stacks.b_tail);
-
 	deallocate_stack(&stacks.a_head, &stacks.a_tail);
 	deallocate_stack(&stacks.b_head, &stacks.b_tail);
 	return (0);
 }
-
-

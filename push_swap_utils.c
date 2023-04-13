@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 17:29:44 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/13 12:09:56 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ rrr : rra and rrb at the same time.
 
 #include"push_swap.h"
 
-void	raise_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-
 t_stack	*create_node(int value)
 {
 	t_stack	*new_node;
@@ -52,20 +46,6 @@ t_stack	*create_node(int value)
 	new_node->previous = NULL;
 	new_node->next = NULL;
 	return (new_node);
-}
-
-void	insert_front(t_stack **head, int value)
-{
-	t_stack	*new_node;
-
-	new_node = create_node(value);
-	if (new_node == NULL)
-		return ;
-	new_node->data = value;
-	new_node->next = *head;
-	if (*head != NULL)
-		(*head)->previous = new_node;
-	*head = new_node;
 }
 
 void	insert_end(t_stack **head, t_stack **tail, int value)
@@ -116,19 +96,6 @@ int	check_digit(char *num)
 		i++;
 	}
 	return (1);
-}
-
-int	node_count(t_stack *head)
-{
-	int	count;
-
-	count = 0;
-	while (head != NULL)
-	{
-		head = head->next;
-		count++;
-	}
-	return (count);
 }
 
 int	check_duplicate(char **argv, int i)

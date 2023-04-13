@@ -1,5 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   set_index.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: rares <rares@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/13 12:05:49 by rares         #+#    #+#                 */
+/*   Updated: 2023/04/13 12:10:13 by rares         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"push_swap.h"
 
+void	raise_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
+int	node_count(t_stack *head)
+{
+	int	count;
+
+	count = 0;
+	while (head != NULL)
+	{
+		head = head->next;
+		count++;
+	}
+	return (count);
+}
 
 void	set_index(t_stack *head)
 {
