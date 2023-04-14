@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/07 16:39:21 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 13:22:25 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/14 13:31:36 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	max_bits(int largest)
 	return (bits);
 }
 
-void	radix_sort(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **tail_b)
+void	radix_sort(t_stack **head_a, t_stack **head_b,
+					t_stack **tail_a, t_stack **tail_b)
 {
 	int	largest;
 	int	largest_bits;
@@ -66,8 +67,6 @@ void	radix_sort(t_stack **head_a, t_stack **head_b, t_stack **tail_a, t_stack **
 
 	largest = largest_number(*head_a);
 	largest_bits = max_bits(largest);
-	printf("largest: %d\n", largest);
-	printf("bits: %d\n", largest_bits);
 	i = 0;
 	while (i < largest_bits)
 	{

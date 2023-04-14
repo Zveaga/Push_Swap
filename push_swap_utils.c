@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/13 12:09:56 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 16:00:37 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	is_sorted(t_stack *head)
 	tracker = head;
 	while (tracker != NULL && tracker->next != NULL)
 	{
-		if (tracker->data > tracker->next->data)
+		if (tracker->index > tracker->next->index)
 			return (1);
 		tracker = tracker->next;
 	}

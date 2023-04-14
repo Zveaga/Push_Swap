@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/12 16:57:29 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 12:50:21 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/14 16:17:58 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	push_to_b(t_stack **head_a, t_stack **head_b, \
 					t_stack **tail_a, t_stack **tail_b)
 {
 	push(head_a, head_b, tail_a, tail_b);
-	//write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }
 
 void	push_to_a(t_stack **head_b, t_stack **head_a, \
 					t_stack **tail_b, t_stack **tail_a)
 {
 	push(head_b, head_a, tail_b, tail_a);
-	//write(1, "pb\n", 3);
+	write(1, "pa\n", 3);
 }
