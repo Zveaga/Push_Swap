@@ -6,7 +6,7 @@
 /*   By: rares <rares@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/13 12:05:49 by rares         #+#    #+#                 */
-/*   Updated: 2023/04/13 12:10:13 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/13 19:01:39 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	raise_error(void)
 
 int	node_count(t_stack *head)
 {
-	int	count;
+	t_stack	*tracker;
+	int		count;
 
 	count = 0;
-	while (head != NULL)
+	tracker = head;
+	while (tracker != NULL)
 	{
-		head = head->next;
+		tracker = tracker->next;
 		count++;
 	}
 	return (count);
