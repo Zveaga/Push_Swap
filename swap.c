@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/12 16:57:40 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/12 17:25:48 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/14 18:03:07 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,18 @@ void	swap_both(t_stack **head_a, t_stack **head_b)
 	write(1, "ss\n", 3);
 }
 
-void swap_two(t_stack **head)
+void	swap_two(t_stack **head)
 {
-    t_stack *first = *head;
-    t_stack *second = first->next;
-	
-    if (*head == NULL)
-        return;
-    first->next = NULL;
-    first->previous = second;
-    second->next = first;
-    second->previous = NULL;
-    *head = second;
+	t_stack	*first;
+	t_stack	*second;
+
+	first = *head;
+	second = first->next;
+	if (*head == NULL)
+		return ;
+	first->next = NULL;
+	first->previous = second;
+	second->next = first;
+	second->previous = NULL;
+	*head = second;
 }

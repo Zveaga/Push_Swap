@@ -1,4 +1,4 @@
-NAME = push_swap.a
+NAME = push_swap
 
 SRC = \
 push_swap_utils.c \
@@ -13,20 +13,24 @@ swap.c \
 
 OBJ = $(SRC:.c=.o)
 
+LIBFT_DIR = libft
+
+LIBFT_A = $(LIBFT_DIR)/libft.a
+
 CFLAGS = -Wall -Wextra -Werror
 
 CC = cc
 
 all: $(NAME)
 
-$(NAME): libft/libft.a $(OBJ)
-	ar rcs $(NAME) $(OBJ) libft/*.o
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -I $(LIBFT_DIR) $(LIBFT_A) $(OBJ) -o $(NAME)
 
-libft/libft.a:
+$(LIBFT_A):
 	make -C libft
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $^
+%.o: %.c | $(LIBFT_A)
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c -o $@ $^
 
 clean:
 	rm -f $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: rares <rares@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/13 12:05:49 by rares         #+#    #+#                 */
-/*   Updated: 2023/04/13 12:10:13 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 18:01:03 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void	set_index(t_stack *head)
 		tracker = head;
 		while (tracker != NULL)
 		{
-			if (tracker->index == 0 && (largest == NULL || tracker->data > largest->data))
+			if (tracker->index == 0 && (largest == NULL
+					|| tracker->data > largest->data))
 				largest = tracker;
 			tracker = tracker->next;
 		}
-		if(largest != NULL)
+		if (largest != NULL)
 			largest->index = list_size;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/11 18:24:40 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/05 15:07:20 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 18:47:39 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 
 void	ft_putnbr_fd(int n, int fd);
+
+void	ft_free_2d(char **array);
 
 typedef struct s_list
 {

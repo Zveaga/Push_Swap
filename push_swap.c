@@ -6,23 +6,23 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 16:35:24 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/14 19:05:55 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	print_normal(t_stack *head)
-{
-	t_stack	*tracker;
+// void	print_normal(t_stack *head)
+// {
+// 	t_stack	*tracker;
 
-	tracker = head;
-	while (tracker != NULL)
-	{
-		printf("%d(%d) ", tracker->data, tracker->index);
-		tracker = tracker->next;
-	}
-}
+// 	tracker = head;
+// 	while (tracker != NULL)
+// 	{
+// 		printf("%d(%d) ", tracker->data, tracker->index);
+// 		tracker = tracker->next;
+// 	}
+// }
 
 void	deallocate_stack(t_stack **head, t_stack **tail)
 {
@@ -77,7 +77,7 @@ void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 		i = 1;
 	while (argv[i])
 	{
-		temp = atoi(argv[i]);
+		temp = ft_atoi(argv[i]);
 		if (check_digit(argv[i]) == 0)
 			raise_error();
 		if (temp < INT_MIN || temp > INT_MAX)
@@ -87,6 +87,8 @@ void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 		insert_end(head_a, tail_a, temp);
 		i++;
 	}
+	if (argc == 2)
+		ft_free_2d(argv);
 }
 
 void	sorting_selector(t_stack **head_a, t_stack **head_b, \
@@ -111,20 +113,24 @@ int	main(int argc, char **argv)
 
 	stacks.a_head = NULL;
 	stacks.a_tail = NULL;
-	// stacks.b_head = NULL;
-	// stacks.b_tail = NULL;
+	stacks.b_head = NULL;
+	stacks.b_tail = NULL;
 	parse_input(argc, argv, &stacks.a_head, &stacks.a_tail);
-	// if (is_sorted(stacks.a_head) == 0)
-	// {
-	// 	deallocate_stack(&stacks.a_head, &stacks.a_tail);
-	// 	deallocate_stack(&stacks.b_head, &stacks.b_tail);
-	// 	exit(EXIT_SUCCESS);
-	// }
+	if (is_sorted(stacks.a_head) == 0)
+	{
+		deallocate_stack(&stacks.a_head, &stacks.a_tail);
+		deallocate_stack(&stacks.b_head, &stacks.b_tail);
+		exit(EXIT_SUCCESS);
+	}
 	set_index(stacks.a_head);
 	sorting_selector(&stacks.a_head, &stacks.b_head, \
 					&stacks.a_tail, &stacks.b_tail);
-					
-	//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
+	deallocate_stack(&stacks.a_head, &stacks.a_tail);
+	deallocate_stack(&stacks.b_head, &stacks.b_tail);
+	return (0);
+}
+
+//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
 	// printf("\nAfter sorting (stack_a):  ");
 	// print_normal(stacks.a_head);
 	// printf("\n");
@@ -134,8 +140,3 @@ int	main(int argc, char **argv)
 
 	// else
 	// 	printf("Not sorted");
-
-	deallocate_stack(&stacks.a_head, &stacks.a_tail);
-	deallocate_stack(&stacks.b_head, &stacks.b_tail);
-	return (0);
-}

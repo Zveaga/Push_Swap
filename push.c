@@ -6,21 +6,28 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/12 16:57:29 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 16:17:58 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/14 18:05:56 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	b_head_is_null(t_stack **head_a, t_stack **head_b, t_stack **tail_b, t_stack **elem1_b, t_stack **elem2_a, t_stack **elem1_a)
+void	b_head_is_null(t_stack **head_a, t_stack **head_b, t_stack **tail_b)
 {
-		*elem1_b = *elem1_a;
-		(*elem2_a)->previous = NULL;
-		(*elem1_b)->next = NULL;
-		(*elem1_b)->previous = NULL;
-		*head_a = *elem2_a;
-		*head_b = *elem1_b;
-		*tail_b = *elem1_b;
+	t_stack	*elem1_a;
+	t_stack	*elem2_a;
+	t_stack	*elem1_b;
+
+	elem1_a = *head_a;
+	elem2_a = (*head_a)->next;
+	elem1_b = *head_b;
+	elem1_b = elem1_a;
+	elem2_a->previous = NULL;
+	elem1_b->next = NULL;
+	elem1_b->previous = NULL;
+	*head_a = elem2_a;
+	*head_b = elem1_b;
+	*tail_b = elem1_b;
 }
 
 void	push(t_stack **head_a, t_stack **head_b, \
@@ -40,7 +47,7 @@ void	push(t_stack **head_a, t_stack **head_b, \
 		elem2_a = (*head_a)->next;
 	if (elem1_b == NULL)
 	{
-		b_head_is_null(head_a, head_b, tail_b, &elem1_b, &elem2_a, &elem1_a);
+		b_head_is_null(head_a, head_b, tail_b);
 		return ;
 	}
 	elem1_a->next = elem1_b;

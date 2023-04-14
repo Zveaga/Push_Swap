@@ -6,14 +6,14 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/13 13:05:31 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 19:21:01 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include<unistd.h>
 # include<stdlib.h>
 # include<stdio.h>
@@ -24,15 +24,15 @@ typedef struct s_stack
 	int				index;
 	struct s_stack	*next;
 	struct s_stack	*previous;
-}	t_stack;
+}					t_stack;
 
 typedef struct s_stacks
 {
-	t_stack	*a_head;
-	t_stack	*a_tail;
-	t_stack	*b_head;
-	t_stack	*b_tail;
-}	t_stacks;
+	t_stack		*a_head;
+	t_stack		*a_tail;
+	t_stack		*b_head;
+	t_stack		*b_tail;
+}				t_stacks;
 
 t_stack			*create_node(int value);
 

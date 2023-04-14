@@ -6,7 +6,7 @@
 /*   By: rares <rares@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/13 12:08:29 by rares         #+#    #+#                 */
-/*   Updated: 2023/04/14 15:48:01 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/14 18:01:48 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	sort_3(t_stack **head_a, t_stack **tail_a)
 		swap_a(head_a);
 }
 
-void	sort_4(t_stack **head_a, t_stack **head_b, t_stack **tail_a,  t_stack **tail_b)
+void	sort_4(t_stack **head_a, t_stack **head_b,
+				t_stack **tail_a, t_stack **tail_b)
 {
 	int		smallest;
 
@@ -42,13 +43,13 @@ void	sort_4(t_stack **head_a, t_stack **head_b, t_stack **tail_a,  t_stack **tai
 	}
 	else if ((*head_a)->next->index == smallest)
 		swap_a(head_a);
-
 	push_to_b(head_a, head_b, tail_a, tail_b);
 	sort_3(head_a, tail_a);
 	push_to_a(head_b, head_a, tail_b, tail_a);
 }
 
-void	sort_5(t_stack **head_a, t_stack **head_b, t_stack **tail_a,  t_stack **tail_b)
+void	sort_5(t_stack **head_a, t_stack **head_b,
+				t_stack **tail_a, t_stack **tail_b)
 {
 	int	smallest;
 
@@ -57,7 +58,7 @@ void	sort_5(t_stack **head_a, t_stack **head_b, t_stack **tail_a,  t_stack **tai
 		reverse_rotate_a(head_a, tail_a);
 	else if ((*head_a)->next->next->next->index == smallest)
 	{
-		reverse_rotate_a(head_a, tail_a);	
+		reverse_rotate_a(head_a, tail_a);
 		reverse_rotate_a(head_a, tail_a);
 	}	
 	else if ((*head_a)->next->next->index == smallest)
