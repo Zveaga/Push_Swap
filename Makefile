@@ -3,10 +3,13 @@ NAME = push_swap.a
 SRC = \
 push_swap_utils.c \
 push_swap.c \
+push.c \
 radix.c \
+reverse_rotate.c \
+rotate.c \
 set_index.c \
-push_adri.c \
-rotate_adri.c \
+simple_sort.c \
+swap.c \
 
 OBJ = $(SRC:.c=.o)
 
