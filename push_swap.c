@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/13 13:30:52 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 13:11:58 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	print_normal(t_stack *head)
 	tracker = head;
 	while (tracker != NULL)
 	{
-		// printf("%d(%d) ", tracker->data, tracker->index);
-		printf("%d ", tracker->data);
+		printf("%d(%d) ", tracker->data, tracker->index);
+		// printf("%d ", tracker->data);
 		tracker = tracker->next;
 	}
 	//printf("\n");
@@ -92,14 +92,14 @@ void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 		i = 1;
 	while (argv[i])
 	{
-		temp = ft_atoi(argv[i]);
+		temp = atoi(argv[i]);
 		if (check_digit(argv[i]) == 0)
 			raise_error();
 		if (temp < INT_MIN || temp > INT_MAX)
 			raise_error();
 		if (check_duplicate(argv, i) == 0)
 			raise_error();
-		insert_end(head_a, tail_a, ft_atoi(argv[i]));
+		insert_end(head_a, tail_a, temp);
 		i++;
 	}
 }
@@ -140,13 +140,13 @@ int	main(int argc, char **argv)
 	sorting_selector(&stacks.a_head, &stacks.b_head, \
 					&stacks.a_tail, &stacks.b_tail);
 	//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
-	// printf("After sorting (stack_a):  ");
-	// print_normal(stacks.a_head);
-	// printf("\n");
-	// if (is_sorted(stacks.a_head) == 0)
-	// 	printf("OK");
-	// else
-	// 	printf("Error");
+	printf("After sorting (stack_a):  ");
+	print_normal(stacks.a_head);
+	printf("\n");
+	if (is_sorted(stacks.a_head) == 0)
+		printf("Sorted");
+	else
+		printf("Not sorted");
 	// printf("Normal print,   stack_b:  ");
 	// print_normal(stacks.b_head);
 	// printf("Reversed print, stack_b:  ");
