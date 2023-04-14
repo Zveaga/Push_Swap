@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/13 12:09:56 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 10:24:55 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,45 @@ t_stack	*create_node(int value)
 		return (NULL);
 	new_node->data = value;
 	new_node->index = 0;
-	new_node->previous = NULL;
 	new_node->next = NULL;
 	return (new_node);
 }
 
-void	insert_end(t_stack **head, t_stack **tail, int value)
+// void	insert_end(t_stack **head, t_stack **tail, int value)
+// {
+// 	t_stack	*new_node;
+
+// 	new_node = create_node(value);
+// 	if (new_node == NULL)
+// 		return ;
+// 	if (*head == NULL)
+// 	{
+// 		*head = new_node;
+// 		*tail = new_node;
+// 		return ;
+// 	}
+// 	new_node->data = value;
+// 	new_node->previous = *tail;
+// 	new_node->next = NULL;
+// 	(*tail)->next = new_node;
+// 	*tail = new_node;
+// }
+
+void	insert_end(t_stack **head, int new_value)
 {
 	t_stack	*new_node;
+	t_stack	*current;
 
-	new_node = create_node(value);
-	if (new_node == NULL)
-		return ;
-	if (*tail == NULL)
+	if (*head == NULL)
 	{
-		*head = new_node;
-		*tail = new_node;
+		*head = create_node(new_value);
 		return ;
 	}
-	new_node->data = value;
-	new_node->previous = *tail;
-	new_node->next = NULL;
-	(*tail)->next = new_node;
-	*tail = new_node;
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	new_node = create_node(new_value);
+	current->next = new_node;
 }
 
 int	is_sorted(t_stack *head)
@@ -75,7 +91,7 @@ int	is_sorted(t_stack *head)
 	tracker = head;
 	while (tracker != NULL && tracker->next != NULL)
 	{
-		if (tracker->data > tracker->next->data)
+		if (tracker->index > tracker->next->index)
 			return (1);
 		tracker = tracker->next;
 	}

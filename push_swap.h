@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/13 13:05:31 by rares         ########   odam.nl         */
+/*   Updated: 2023/04/14 10:09:59 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 	int				data;
 	int				index;
 	struct s_stack	*next;
-	struct s_stack	*previous;
+	//struct s_stack	*previous;
 }	t_stack;
 
 typedef struct s_stacks
@@ -38,7 +38,7 @@ t_stack			*create_node(int value);
 
 void			insert_front(t_stack **head, int value);
 
-void			insert_end(t_stack **head, t_stack **tail, int value);
+// void			insert_end(t_stack **head, t_stack **tail, int value);
 
 void			swap_a(t_stack **head);
 
@@ -91,8 +91,10 @@ void			sort_4(t_stack **head_a, t_stack **head_b, \
 void			sort_5(t_stack **head_a, t_stack **head_b, \
 						t_stack **tail_a, t_stack **tail_b);
 
-void			radix_sort(t_stack **head_a, t_stack **head_b, \
-							t_stack **tail_a, t_stack **tail_b);
+// void			radix_sort(t_stack **head_a, t_stack **head_b, \
+// 							t_stack **tail_a, t_stack **tail_b);
+
+void			radix_sort(t_stack **head_a, t_stack **head_b);
 
 int				is_sorted(t_stack *head);
 
@@ -107,5 +109,16 @@ int				largest_number(t_stack *head);
 int				max_bits(int largest);
 
 int				smallest_number(t_stack *head);
+
+
+
+
+void	rotate_a_adri(t_stack **head);
+
+void	push_b_adri(t_stack **stack_a, t_stack **stack_b);
+
+void	push_a_adri(t_stack **stack_a, t_stack **stack_b);
+
+void	insert_end(t_stack **head, int new_value);
 
 #endif
