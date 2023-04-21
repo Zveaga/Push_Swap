@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 19:21:01 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/21 16:26:26 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include<unistd.h>
 # include<stdlib.h>
 # include<stdio.h>
+# include<limits.h>
 
 typedef struct s_stack
 {

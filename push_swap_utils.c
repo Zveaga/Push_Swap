@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 18:53:25 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/21 16:38:05 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ int	check_digit(char *num)
 	int	i;
 
 	i = 0;
-	if (num[0] == '-')
+	if (num[0] == '-' && ft_isdigit(num[1]) == 0)
+		i++;
+	else if (num[0] == '+' && ft_isdigit(num[1]) == 0)
 		i++;
 	while (num[i])
 	{

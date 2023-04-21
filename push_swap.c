@@ -6,23 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/14 19:05:55 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/21 18:24:09 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
-
-// void	print_normal(t_stack *head)
-// {
-// 	t_stack	*tracker;
-
-// 	tracker = head;
-// 	while (tracker != NULL)
-// 	{
-// 		printf("%d(%d) ", tracker->data, tracker->index);
-// 		tracker = tracker->next;
-// 	}
-// }
 
 void	deallocate_stack(t_stack **head, t_stack **tail)
 {
@@ -78,7 +66,7 @@ void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 	while (argv[i])
 	{
 		temp = ft_atoi(argv[i]);
-		if (check_digit(argv[i]) == 0)
+		if (ft_strlen(argv[i]) == 0 || check_digit(argv[i]) == 0)
 			raise_error();
 		if (temp < INT_MIN || temp > INT_MAX)
 			raise_error();
@@ -129,14 +117,3 @@ int	main(int argc, char **argv)
 	deallocate_stack(&stacks.b_head, &stacks.b_tail);
 	return (0);
 }
-
-//---PRINT--- REMOVE BEFORE SUBMISSION!!!!!!!!!!!!
-	// printf("\nAfter sorting (stack_a):  ");
-	// print_normal(stacks.a_head);
-	// printf("\n");
-
-	// if (is_sorted(stacks.a_head) == 0 && stacks.b_head == NULL)
-	// 	printf("\nSorted and stack_b empty\n");
-
-	// else
-	// 	printf("Not sorted");
