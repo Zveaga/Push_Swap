@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 17:37:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/21 16:38:05 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/25 15:59:10 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	insert_end(t_stack **head, t_stack **tail, int value)
 
 	new_node = create_node(value);
 	if (new_node == NULL)
-		return ;
+	{
+		deallocate_stack(head, tail);
+		exit(EXIT_FAILURE);
+	}
 	if (*tail == NULL)
 	{
 		*head = new_node;

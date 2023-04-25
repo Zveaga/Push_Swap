@@ -6,11 +6,28 @@
 /*   By: rares <rares@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/13 12:05:49 by rares         #+#    #+#                 */
-/*   Updated: 2023/04/14 18:01:03 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/25 15:39:50 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
+
+void	deallocate_stack(t_stack **head, t_stack **tail)
+{
+	t_stack	*tracker;
+
+	if (*head == NULL)
+		return ;
+	tracker = *head;
+	while (tracker->next != NULL)
+	{
+		tracker = tracker->next;
+		free(tracker->previous);
+	}
+	free(tracker);
+	(*head) = NULL;
+	(*tail) = NULL;
+}
 
 void	raise_error(void)
 {

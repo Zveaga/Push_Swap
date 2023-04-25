@@ -6,28 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:09:05 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/21 18:24:09 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/25 18:09:41 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
-
-void	deallocate_stack(t_stack **head, t_stack **tail)
-{
-	t_stack	*tracker;
-
-	if (*head == NULL)
-		return ;
-	tracker = *head;
-	while (tracker->next != NULL)
-	{
-		tracker = tracker->next;
-		free(tracker->previous);
-	}
-	free(tracker);
-	(*head) = NULL;
-	(*tail) = NULL;
-}
 
 void	parse_quotes(char **args)
 {
@@ -50,6 +33,15 @@ void	parse_quotes(char **args)
 		raise_error();
 }
 
+char	**parse_argc_2(char **argv)
+{
+	parse_quotes(argv);
+	argv = ft_split(argv[1], ' ');
+	if (argv == NULL)
+		exit(EXIT_FAILURE);
+	return (argv);
+}
+
 void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 {
 	int		i;
@@ -57,17 +49,15 @@ void	parse_input(int argc, char **argv, t_stack **head_a, t_stack **tail_a)
 
 	i = 0;
 	if (argc == 2)
-	{
-		parse_quotes(argv);
-		argv = ft_split(argv[1], ' ');
-	}
+		argv = parse_argc_2(argv);
 	else
 		i = 1;
 	while (argv[i])
 	{
-		temp = ft_atoi(argv[i]);
-		if (ft_strlen(argv[i]) == 0 || check_digit(argv[i]) == 0)
+		if (ft_strlen(argv[i]) > 11 || ft_strlen(argv[i]) == 0
+			|| check_digit(argv[i]) == 0)
 			raise_error();
+		temp = ft_atoi(argv[i]);
 		if (temp < INT_MIN || temp > INT_MAX)
 			raise_error();
 		if (check_duplicate(argv, i) == 0)
@@ -117,3 +107,7 @@ int	main(int argc, char **argv)
 	deallocate_stack(&stacks.b_head, &stacks.b_tail);
 	return (0);
 }
+// void check(){
+// 	system("leaks push_swap");
+// }
+//atexit(check);

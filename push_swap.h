@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/24 15:03:41 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/04/21 16:26:26 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/04/25 15:22:18 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,7 @@ int				largest_number(t_stack *head);
 int				max_bits(int largest);
 
 int				smallest_number(t_stack *head);
+
+void			deallocate_stack(t_stack **head, t_stack **tail);
 
 #endif
